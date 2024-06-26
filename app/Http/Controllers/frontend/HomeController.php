@@ -1,14 +1,18 @@
 <?php
 
-    namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers\Frontend;
 
-    use App\Http\Controllers\Controller;
-    use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Category;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-    class HomeController extends Controller
+class HomeController extends Controller
+{
+    public function index()
     {
-        public function index()
-        {
-            return view('frontend.home');
-        }
+        $products = Product::all();
+        $category = Category::all();
+        return view('frontend.index', compact('products', 'category'));
     }
+}
