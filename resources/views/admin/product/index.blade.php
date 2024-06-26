@@ -7,7 +7,6 @@
         <div class="section-header">
             <h1>Prosucts Setting</h1>
         </div>
-
         <div class="card card-primary">
             <div class="card-header">
                 <h4>All Prosucts</h4>
@@ -17,9 +16,7 @@
                     </a>
                 </div>
             </div>
-
             <div class="card-body">
-
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-striped" id="table-2">
