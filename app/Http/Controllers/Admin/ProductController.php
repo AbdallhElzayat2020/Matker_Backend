@@ -2,17 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\traits\FileUploadTrait;
+use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
+    // import FileUploadTrait from traits
+    use FileUploadTrait;
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $products = Product::all();
+        return view('admin.product.index', compact('products'));
     }
 
     /**
@@ -20,7 +27,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        return view('admin.product.create', compact('categories'));
     }
 
     /**
@@ -28,7 +36,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $imgPath = $this->handleFileUpload($request, 'image');
+        $product = new Product();
+        $product->title = $request->title;
+        $product->description = $request->description;
+        $product->category_id = $request->category_id;
+        $product->image = $imgPath;
+        $product->save();
+        toast(__('Product has been created successfully'), 'success');
+
+        return redirect()->route('admin.product.index');
     }
 
     /**

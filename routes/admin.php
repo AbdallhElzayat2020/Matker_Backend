@@ -21,5 +21,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['admin']],
 
         Route::resource('category', CategoryController::class);
 
-        Route::resource('products', ProductController::class);
+        Route::resource('product', ProductController::class);
 });

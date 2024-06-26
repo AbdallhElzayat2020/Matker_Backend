@@ -1,18 +1,18 @@
 @extends('admin.layouts.master')
 @section('title')
-    Categories Page
+    Prosucts Page
 @endsection
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Categories Setting</h1>
+            <h1>Prosucts Setting</h1>
         </div>
 
         <div class="card card-primary">
             <div class="card-header">
-                <h4>All Categories</h4>
+                <h4>All Prosucts</h4>
                 <div class="card-header-action">
-                    <a href="{{ route('admin.category.create') }}" class="btn btn-primary">
+                    <a href="{{ route('admin.product.create') }}" class="btn btn-primary">
                         <i class="fas fa-plus"></i> Create New
                     </a>
                 </div>
@@ -28,27 +28,29 @@
                                     <th class="text-center">
                                         #
                                     </th>
-                                    <th>Name</th>
+                                    <th>Title</th>
                                     <th>Image</th>
-                                    <th>Description</th>
                                     <th>Category</th>
+                                    <th>Description</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($categories as $key => $category)
+                                @foreach ($products as $key => $product)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
-                                        <td>{{ $category->name }}</td>
-                                        <td>{{ $category->name }}</td>
-                                        <td>{{ $category->name }}</td>
-                                        <td>{{ $category->name }}</td>
+                                        <td>{{ $product->title }}</td>
+                                        <td>{{ $product->category() }}</td>
+                                        <td>{{ $product->description }}</td>
+                                        <td><img src="{{ asset($product->image) }}" alt="{{ $product->title }}"
+                                                width="100" height="50">
+                                        </td>
                                         <td>
                                             <a class="btn btn-primary"
-                                                href="{{ route('admin.category.edit', $category->id) }}">
+                                                href="{{ route('admin.product.edit', $product->id) }}">
                                                 <i class="fas fa-edit" style="font-size:15px"></i></a>
                                             <a class="btn btn-danger delete-item"
-                                                href="{{ route('admin.category.destroy', $category->id) }}">
+                                                href="{{ route('admin.product.destroy', $product->id) }}">
                                                 <i class="fas fa-trash" style="font-size:15px"></i>
                                             </a>
                                         </td>

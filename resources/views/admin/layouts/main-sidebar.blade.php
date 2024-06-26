@@ -18,6 +18,10 @@
                 <a class="nav-link " href="{{ route('admin.category.index') }}"><i class="fas fa-fire"></i>
                     <span>Categories</span></a>
             </li>
+            <li class="">
+                <a class="nav-link " href="{{ route('admin.product.index') }}"><i class="fas fa-fire"></i>
+                    <span>Products</span></a>
+            </li>
         </ul>
 
     </aside>
