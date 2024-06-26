@@ -126,43 +126,57 @@
     <!-- Timer -->
     <!-- Payment Form -->
     <div class="order-form">
+        @if (session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="payment-methods">
             <button class="payment-method active">الدفع عند التسليم</button>
             <button class="payment-method">الدفع اون لاين</button>
         </div>
         <h2>الدفع عند التسليم</h2>
-        <form>
+        <form action="{{ route('send-form') }}" method="post">
+            @csrf
+            @method('POST')
             <div class="form-group">
-                <label for="name">الاسم الثاني *</label>
-                <input type="text" class="form-control" id="name" required />
+                <label for="name">الاسم ثنائي *</label>
+                <input type="text" name="name" class="form-control" id="name"  />
             </div>
             <div class="form-group">
-                <label for="phone">الجوال *</label>
-                <input type="text" class="form-control" id="phone" placeholder="+966" required />
+                <label for="number">الجوال *</label>
+                <input type="text" name="number" class="form-control" id="number" placeholder="+966"  />
                 <small>يرجى عدم ادخال كود الدولة وابدأ بالرقم 5 او 05</small>
             </div>
             <div class="form-group">
-                <label for="address">العنوان *</label>
-                <textarea class="form-control" id="address" required></textarea>
+                <label for="address">العنوان وطلبك *</label>
+                <textarea class="form-control" name="address" id="address" ></textarea>
             </div>
             <div class="form-group">
                 <label>اختر العرض:</label>
                 <div class="form-check">
-                    <input readonly class="form-check-input" type="radio" id="offer1" name="offer" value="offer1"
-                        required />
+                    <input class="form-check-input" type="radio" id="offer1" name="offer" value="offer1"  />
                     <label class="form-check-label" for="offer1">اشترى 1 بسعر 199 ريال +25 رسوم توصيل</label>
                 </div>
                 <div class="form-check">
-                    <input readonly class="form-check-input" type="radio" id="offer2" name="offer" value="offer2" />
+                    <input class="form-check-input" type="radio" id="offer2" name="offer" value="offer2" />
                     <label class="form-check-label" for="offer2">اشترى 2 بسعر 329 ريال (توصيل مجاني)</label>
                 </div>
                 <div class="form-check">
-                    <input readonly class="form-check-input" type="radio" id="offer3" name="offer" value="offer3" />
+                    <input class="form-check-input" type="radio" id="offer3" name="offer" value="offer3" />
                     <label class="form-check-label" for="offer3">اشترى 3 بسعر 399 ريال (توصيل مجاني)</label>
                 </div>
             </div>
             <div class="form-group form-check">
-                <input readonly type="checkbox" class="form-check-input" id="fast-delivery" />
+                <input type="checkbox" name="offer_4" class="form-check-input" id="fast-delivery" />
                 <label class="form-check-label" for="fast-delivery">مشاركة الموقع لتوصيل سريع</label>
             </div>
             <button type="submit" class="btn submit-btn">تأكيد الطلب</button>

@@ -22,6 +22,10 @@
                 <a class="nav-link " href="{{ route('admin.product.index') }}"><i class="fas fa-fire"></i>
                     <span>Products</span></a>
             </li>
+            <li class="">
+                <a class="nav-link " href="{{ route('admin.order.index') }}"><i class="fas fa-fire"></i>
+                    <span>orders</span></a>
+            </li>
         </ul>
 
     </aside>

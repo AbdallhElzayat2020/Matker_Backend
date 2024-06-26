@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Frontend\HomeController;
 
@@ -16,6 +17,11 @@ use App\Http\Controllers\Frontend\HomeController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+
+// send Form 
+Route::post('sendform', [OrderController::class, 'send'])->name('send-form');
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
