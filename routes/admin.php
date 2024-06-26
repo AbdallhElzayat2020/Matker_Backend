@@ -15,6 +15,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::post('logout', [AdminAuthController::class, 'logout'])->name('logout');
 });
 
+// Protected Routes
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['admin']], function () {
 
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');

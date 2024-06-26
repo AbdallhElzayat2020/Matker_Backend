@@ -4,36 +4,15 @@
     <div class="swiper-container">
         <h1>مجموعة تبييض الاسنان</h1>
         <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <div class="slide-content">
-                    <img src="{{ asset('frontend/assets/images/portfolio-1.jpg') }}" alt="Slide 1" />
-                    <h3>نتائج فورية و مذهلة</h3>
-                    <p>تقنية جديدة و أمنة تماما لتبييض الأسنان في المنزل بسهولة تامة</p>
+            @foreach ($products as $product)
+                <div class="swiper-slide">
+                    <div class="slide-content">
+                        <img src="{{ asset($product->image) }}" alt="{{ $product->title }}" />
+                        <h3>{{ $product->title }}</h3>
+                        <p>{{ $product->description }}</p>
+                    </div>
                 </div>
-            </div>
-
-            <div class="swiper-slide">
-                <div class="slide-content">
-                    <img src="{{ asset('frontend/assets/images/portfolio-1.jpg') }}" alt="Slide 1" />
-                    <h3>نتائج فورية و مذهلة</h3>
-                    <p>تقنية جديدة و أمنة تماما لتبييض الأسنان في المنزل بسهولة تامة</p>
-                </div>
-            </div>
-
-            <div class="swiper-slide">
-                <div class="slide-content">
-                    <img src="{{ asset('frontend/assets/images/portfolio-1.jpg') }}" alt="Slide 1" />
-                    <h3>نتائج فورية و مذهلة</h3>
-                    <p>تقنية جديدة و أمنة تماما لتبييض الأسنان في المنزل بسهولة تامة</p>
-                </div>
-            </div>
-            <div class="swiper-slide">
-                <div class="slide-content">
-                    <img src="{{ asset('frontend/assets/images/portfolio-1.jpg') }}" alt="Slide 1" />
-                    <h3>نتائج فورية و مذهلة</h3>
-                    <p>تقنية جديدة و أمنة تماما لتبييض الأسنان في المنزل بسهولة تامة</p>
-                </div>
-            </div>
+            @endforeach
         </div>
         <!-- Add Pagination -->
         <!-- <div class="swiper-pagination"></div> -->

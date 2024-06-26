@@ -29,9 +29,7 @@
                                         #
                                     </th>
                                     <th>Name</th>
-                                    <th>Image</th>
-                                    <th>Description</th>
-                                    <th>Category</th>
+
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -40,13 +38,11 @@
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $category->name }}</td>
-                                        <td>{{ $category->name }}</td>
-                                        <td>{{ $category->name }}</td>
-                                        <td>{{ $category->name }}</td>
                                         <td>
                                             <a class="btn btn-primary"
                                                 href="{{ route('admin.category.edit', $category->id) }}">
-                                                <i class="fas fa-edit" style="font-size:15px"></i></a>
+                                                <i class="fas fa-edit" style="font-size:15px"></i>
+                                            </a>
                                             <a class="btn btn-danger delete-item"
                                                 href="{{ route('admin.category.destroy', $category->id) }}">
                                                 <i class="fas fa-trash" style="font-size:15px"></i>

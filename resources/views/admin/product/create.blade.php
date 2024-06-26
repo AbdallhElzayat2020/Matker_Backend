@@ -16,18 +16,18 @@
                 <form enctype="multipart/form-data" action="{{ route('admin.product.store') }}" method="post">
                     @csrf
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input name="title" placeholder="Name" value="{{ old('name') }}" id="name" type="text"
+                        <label for="title">Name</label>
+                        <input name="title" required placeholder="title" value="{{ old('title') }}" id="title" type="text"
                             class="form-control">
-                        @error('name')
+                        @error('title')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="name">Description</label>
-                        <input name="description" placeholder="description" value="{{ old('description') }}" id="name"
+                        <label for="description">Description</label>
+                        <input name="description" required placeholder="description" value="{{ old('description') }}" id="description"
                             type="text" class="form-control">
-                        @error('name')
+                        @error('description')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
@@ -35,7 +35,7 @@
                         <label for="content">Image</label>
                         <div id="image-preview" class="image-preview">
                             <label for="image-upload" id="image-label">Choose File</label>
-                            <input type="file" name="image" id="image-upload">
+                            <input type="file" required name="image" id="image-upload">
                         </div>
                         @error('image')
                             <p class="text-danger">{{ $message }}</p>
@@ -49,7 +49,7 @@
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
-                        @error('name')
+                        @error('category_id')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>

@@ -30,7 +30,6 @@
 <script src="{{ asset('admin/assets/modules/summernote/summernote-bs4.js') }}"></script>
 {{-- Tag Plugin --}}
 <script src="{{ asset('admin/assets/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
-
 <script>
     $(document).ready(function() {
 
@@ -51,7 +50,8 @@
         no_label: false, // Default: false
         success_callback: null // Default: null
     });
-
+</script>
+<script>
     // add csrf token in ajax request
     $.ajaxSetup({
         headers: {
