@@ -20,12 +20,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
 // Protected Routes
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['admin']], function () {
-
-        Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-        Route::resource('category', CategoryController::class);
-
-        Route::resource('product', ProductController::class);
         
+        Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        // Route Categories
+        Route::resource('category', CategoryController::class);
+        // Route Products
+        Route::resource('product', ProductController::class);
+        // Route Orders
         Route::resource('order', AdminOrderController::class);
 });
