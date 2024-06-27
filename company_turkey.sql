@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 26, 2024 at 01:53 PM
+-- Generation Time: Jun 27, 2024 at 01:34 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.3.4
 
@@ -116,7 +116,32 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (11, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 (12, '2024_06_24_200704_create_categories_table', 1),
 (13, '2024_06_25_180023_create_admins_table', 1),
-(14, '2024_06_25_195422_create_products_table', 1);
+(14, '2024_06_25_195422_create_products_table', 1),
+(15, '2024_06_26_220806_create_orders_table', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `number` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `offer` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `name`, `number`, `address`, `offer`, `created_at`, `updated_at`) VALUES
+(2, 'Abdallh Elzayat', '43545454', 'testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest', 'offer1', '2024-06-26 20:33:48', '2024-06-26 20:33:48'),
+(3, 'Abdallh Elzayat', 'DAD85', 'dasdasdasdasd', 'offer3', '2024-06-26 20:34:06', '2024-06-26 20:34:06');
 
 -- --------------------------------------------------------
 
@@ -170,10 +195,16 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `title`, `description`, `category_id`, `image`, `created_at`, `updated_at`) VALUES
-(3, 'test test', 'Hello There I\'m Abdallh Elzayat Fullstack Developer && UI UX Designer', 8, 'uploads/JmMZoDmEvaAfcqqZUhMW.png', '2024-06-26 08:34:45', '2024-06-26 08:34:45'),
 (4, 'trttret', 'Hello There I\'m Abdallh Elzayat Fullstack Developer && UI UX Designer', 7, 'uploads/RkLydlfD611KFl3WwfLL.png', '2024-06-26 08:41:05', '2024-06-26 08:41:05'),
 (5, 'abdallh', 'Hello There I\'m Abdallh Elzayat Fullstack Developer && UI UX Designer', 2, 'uploads/kkTOQVHmYTPk3YnGaOlZ.png', '2024-06-26 08:45:58', '2024-06-26 08:45:58'),
-(6, 'testtest', 'invoices', 8, 'uploads/iTgiHqqsusbqNe0YCsnM.png', '2024-06-26 08:46:21', '2024-06-26 08:46:21');
+(6, 'testtest', 'invoices', 8, 'uploads/iTgiHqqsusbqNe0YCsnM.png', '2024-06-26 08:46:21', '2024-06-26 08:46:21'),
+(7, 'تنضيف اسنان  ورجع سنانك زي زمان', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis itaque quibusdam illum perferendis ea, maiores ab nulla, dicta atque rem beatae cupiditate minima reprehenderit. Optio vel provident molestias quia vero?', 8, 'uploads/DBavYOjamv6jKdnyOWmD.png', '2024-06-26 11:23:51', '2024-06-26 11:23:51'),
+(9, 'test test', 'Hello There I\'m Abdallh Elzayat Fullstack Developer && UI UX Designer', 8, 'uploads/yv0ncHqMMtzMSgPhSAdY.png', '2024-06-26 16:59:40', '2024-06-26 16:59:40'),
+(11, 'TEST EDIT', 'TEST EDIT', 8, 'uploads/1TMlY3t3tRSRcAUbFbMz.png', '2024-06-26 17:05:38', '2024-06-26 17:05:38'),
+(12, 'gdgdfg', 'dgdfgdfgdfgdfg', 2, 'uploads/neL9q2Kgu9h9SX9aEv6D.png', '2024-06-26 17:21:40', '2024-06-26 17:21:40'),
+(13, 'trttretsfsfsdffffsfsdf', 'ggvsdffsdf', 8, 'uploads/UyKPtcblY36KtqzSaeQy.png', '2024-06-26 17:27:08', '2024-06-26 17:27:08'),
+(14, 'sdfsdfsd', 'sdfdsfdsffsdfsdfsd', 6, 'uploads/XG5wCBKeoeK64hoaUqDT.png', '2024-06-26 22:07:32', '2024-06-26 22:07:32'),
+(15, 'frewjyjrtytrtre', 'fsdfsferrsdsdasdas', 13, 'uploads/WMThrjhCyvZcfWCxoGg7.png', '2024-06-26 22:08:14', '2024-06-26 22:08:14');
 
 -- --------------------------------------------------------
 
@@ -220,6 +251,12 @@ ALTER TABLE `failed_jobs`
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -276,7 +313,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -288,7 +331,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`
