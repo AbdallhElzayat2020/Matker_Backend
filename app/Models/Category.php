@@ -7,15 +7,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Category extends Model
 {
+
     use HasFactory;
+
     // has many Products one to Many
     public function products()
     {
-        return $this->belongsTo(Product::class);
+        return $this->hasMany(Product::class);
     }
     protected $fillable =[
-      'name'  
+      'name'
     ];
-    
+
     protected $table ='categories';
 }

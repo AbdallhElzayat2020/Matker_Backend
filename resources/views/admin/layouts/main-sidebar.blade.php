@@ -23,6 +23,10 @@
                     <span>Products</span></a>
             </li>
             <li class="">
+                <a class="nav-link " href="{{ route('admin.boxs.index') }}"><i class="fas fa-fire"></i>
+                    <span>Boxes</span></a>
+            </li>
+            <li class="">
                 <a class="nav-link " href="{{ route('admin.order.index') }}"><i class="fas fa-fire"></i>
                     <span>orders</span></a>
             </li>

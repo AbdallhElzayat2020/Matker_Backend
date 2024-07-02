@@ -12,12 +12,22 @@ function toggleMenu() {
 // Start Home-swiper
 document.addEventListener("DOMContentLoaded", function () {
   var swiper = new Swiper(".swiper-container", {
-    slidesPerView: 3,
-    spaceBetween: 30,
-    loop: true,
+    slidesPerView: 1, // عرض شريحة واحدة على الهواتف (mobile)
+    spaceBetween: 30, // المسافة بين الشرائح
+    loop: true, // تكرار الشرائح
     pagination: {
       el: ".swiper-pagination",
       clickable: true,
+    },
+    breakpoints: {
+      576: {
+        slidesPerView: 2, // عرض 2 شريحة على الأجهزة اللوحية (tablet screen)
+        spaceBetween: 30, // المسافة بين الشرائح على الأجهزة اللوحية
+      },
+      992: {
+        slidesPerView: 3, // عرض 3 شرائح كحد أقصى على الشاشات الكبيرة
+        spaceBetween: 30, // المسافة بين الشرائح على الشاشات الكبيرة
+      },
     },
   });
 });
@@ -32,6 +42,8 @@ document.addEventListener("DOMContentLoaded", function () {
     pagination: {
       el: ".swiper-pagination",
       clickable: true,
+      // Disable bullets
+      type: 'custom',
     },
     navigation: {
       nextEl: ".swiper-button-next",

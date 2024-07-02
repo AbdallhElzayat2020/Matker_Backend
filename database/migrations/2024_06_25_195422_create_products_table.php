@@ -12,11 +12,12 @@ return new class extends Migration
     public function up(): void
     {
 
-        Schema::dropIfExists('products');
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('title');
             $table->string('description');
+            $table->string('price');
+            $table->string('product');
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('image');
             $table->timestamps();

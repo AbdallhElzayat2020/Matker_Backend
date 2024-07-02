@@ -22,10 +22,12 @@ class AdminCreateProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'=>['required', 'max:255'],
-            'description'=>['required', 'max:255'],
-            'category_id'=>['required'],
-            'image' => [ 'required' , 'max:5000' , 'image' ] ,
+            'title' => ['required', 'max:255'],
+            'description' => ['required', 'max:255'],
+            'product' => ['required', 'max:255'],
+            'price' => ['required', 'max:255'],
+            'category_id' => ['required'],
+            'image' => ['required', 'max:5000', 'image'],
         ];
     }
 }

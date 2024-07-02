@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\traits\FileUploadTrait;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\AdminEditCategoryRequest;
 use App\Http\Requests\Admin\AdminCreateCategoryRequest;
 
 class CategoryController extends Controller
 {
+    use  FileUploadTrait;
+
     /**
      * Display a listing of the resource.
      */
@@ -79,10 +83,21 @@ class CategoryController extends Controller
     {
         try {
             $category = Category::findorFail($id);
-            $category->delete();
-            return response([ 'status' => 'success' , 'message' => 'Deleted successfully' ]);
+            $products = Product::where('category_id', "LIKE", $id)->get();
+             if ($products->count() > 0) {
+                 foreach ($products as $product) {
+                     $path = $product->image;
+                     $this->deleteFile($path);
+                 }
+             } else {
+                 return response(['status' => 'error', 'message' => 'Products NOT FOUND'], 404);
+             }
+
+             $category->delete();
+
+             return response(['status' => 'success', 'message' => 'Deleted successfully']);
         } catch (\Throwable $th) {
-            return response([ 'status' => 'error' , 'message' => 'Something went wrong' ]);
+            return response(['status' => 'error', 'message' => 'Something went wrong']);
         }
     }
 }

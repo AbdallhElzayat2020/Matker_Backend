@@ -24,8 +24,10 @@ class AdminEditProductRequest extends FormRequest
         return [
             'title' => ['required', 'max:255'],
             'description' => ['required', 'max:255'],
+            'price' => ['required', 'max:255'],
+            'product' => ['required', 'max:255'],
             'category_id' => ['required'],
-            'image' => ['required', 'max:5000', 'image'],
+            'image' => ['max:5000', 'image'],
         ];
     }
 }

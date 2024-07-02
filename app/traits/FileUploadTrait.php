@@ -2,7 +2,6 @@
 
 namespace App\traits;
 
-// use Illuminate\Http\File;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -10,27 +9,56 @@ use Illuminate\Support\Facades\File;
 trait FileUploadTrait
 {
 
+//    public function handleFileUpload(Request $request, string $fileName, ?string $oldPath = null, string $dir = 'uploads'): ?string
+//    {
+//
+//        //check if file exists
+//        if ($oldPath && File::exists(public_path($oldPath))) {
+//            File::delete(public_path($oldPath));
+//        }
+//
+//        //check if request have img
+//        if (!$request->hasFile($fileName)) {
+//            return null;
+//        }
+//
+//
+//
+//        $file = $request->file($fileName);
+//
+//        $extension = $file->getClientOriginalExtension();
+//
+//        $updatedFileName = Str::random(20) . '.' . $extension;
+//
+//        $file->move(public_path($dir), $updatedFileName);
+//
+//        $filePath = $dir . '/' . $updatedFileName;
+//
+//        return $filePath;
+//    }
     public function handleFileUpload(Request $request, string $fileName, ?string $oldPath = null, string $dir = 'uploads'): ?string
     {
-
-        //check if request have img
+        // Check if request has the file
         if (!$request->hasFile($fileName)) {
-            return null;
+            return $oldPath; // Return the old path if no new file uploaded
         }
 
-        //check if file exists
+        // Delete old file if exists
         if ($oldPath && File::exists(public_path($oldPath))) {
             File::delete(public_path($oldPath));
         }
 
+        // Get the file from the request
         $file = $request->file($fileName);
 
+        // Generate a unique file name
         $extension = $file->getClientOriginalExtension();
-
         $updatedFileName = Str::random(20) . '.' . $extension;
 
+        // Move the file to the specified directory
         $file->move(public_path($dir), $updatedFileName);
 
+        // Build the file path
         $filePath = $dir . '/' . $updatedFileName;
 
         return $filePath;
