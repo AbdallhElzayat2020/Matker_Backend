@@ -224,17 +224,17 @@
     <div class="company my-4">
         <div class="container">
             <h4 class="title text-center mb-3">نحن نشحن بضائعنا مع شركة</h4>
-            <div class="row">
-                <div class="col-lg-3">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
                     <img src="{{ asset('frontend/assets/images/portfolio-1.jpg') }}" alt="Quickship"/>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
                     <img src="{{ asset('frontend/assets/images/portfolio-1.jpg') }}" alt="Quickship"/>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
                     <img src="{{ asset('frontend/assets/images/portfolio-1.jpg') }}" alt="Quickship"/>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
                     <img src="{{ asset('frontend/assets/images/portfolio-1.jpg') }}" alt="Quickship"/>
                 </div>
             </div>
