@@ -8,9 +8,10 @@
                 <div class="swiper-slide">
                     <div class="slide-content">
                         <a class="text-decoration-none" href="{{ route('product-details', ['id' => $product->id]) }}">
-                            <img src="{{ asset($product->image) }}" alt="{{ $product->title }}" />
-                            <h3>{{ $product->title }}</h3>
-                            <p>{{ $product->description }}</p>
+                            <img src="{{ asset($product->image) }}" alt="{{ $product->title }}"/>
+                            <h3>{{ Str::limit($product->title, 20 ,'Read More') }}</h3>
+                            {{--                            <h3>{{ $product->title, 50) }}</h3>--}}
+                            <p>{{ Str::limit($product->description,30) }}</p>
                         </a>
                     </div>
                 </div>
@@ -29,8 +30,8 @@
                 @foreach ($boxes as $key => $box)
                     <div class="col-lg-3 mb-2">
                         <img style="width: 100%; max-width: 100%; height: 150px" src="{{ asset($box->image) }}"
-                            alt="" />
-                        <h5 class="text-center">{{ $box->title }}</h4>
+                             alt=""/>
+                        <h5 class="text-center">{{$box->title}}</h4>
                     </div>
                 @endforeach
             </div>
@@ -42,97 +43,88 @@
         <div class="container">
             <h3 class="text-center my-4">الباقي في المخزون من احدث المنتجات</h3>
             <div class="row d-flex align-items-center justify-content-between gap-4">
-                @foreach ($products->take(-4) as $key => $product)
-                    <div class="col-lg-2 bg-dark rounded-lg">
-                        <a class="text-decoration-none" href="{{ route('product-details', ['id' => $product->id]) }}">
-                            <img style="width: 100%; max-width: 100%; height: 150px; margin: 10px 0"
-                                src="{{ asset($product->image) }}" alt="" />
-                            <p class="text-center text-white rounded-lg">متبقي في المخزون فقط <span class="text-warning">
-                                    {{ $product->price }}
-                                </span>قطعة
-                            </p>
-                        </a>
+                @foreach ($products->take(6) as $key => $product)
+                    <div
+                        class="col-lg-3 d-flex mx-auto align-items-center justify-content-between col-md-4 col-sm-6 bg-dark rounded-lg">
+                        <div class="text w-100">
+                            <a class="text-decoration-none d-flex flex-column align-items-center"
+                               href="{{ route('product-details', ['id' => $product->id]) }}">
+                                <img class="img-fluid" style="width: 100%; height: 150px; margin: 10px 0"
+                                     src="{{ asset($product->image) }}" alt=""/>
+                                <p class="text-center text-white rounded-lg">متبقي في المخزون فقط <span
+                                        class="text-warning">{{ $product->price }}</span> قطعة</p>
+                            </a>
+                        </div>
                     </div>
                 @endforeach
-            </div>
-            <div class="product_specification">
-                <div class="roe">
-                    <div class="col-lg-8">
-
-                        <h2>مواصفات المنتج:</h2>
-                        <ul>
-                            <li>-مجموعة تبييض الأسنان</li>
-                            <li>- -مجموعة متكاملة توفر العناية التامة بالأسنان</li>
-                            <li>--تقنية جديدة و آمنة تما لتبييض الأسنان في المنزل</li>
-                            <li>-مجموعة تبييض الأسنان</li>
-                            <li>-يساعد في إزالة التصبغات و يسرع من عملية التبييض</li>
-                            <li>-سهل الاستخدام و يبييض الأسنان حتى ثمان درجات</li>
-                        </ul>
-                        <span>– تتكون المجموعة من : </span>
-                        <p style="margin-top: 20px; width: 200px">
-                            -جل التبييض : يساعد الجل على إزالة التصبغات الناتجة عن القهوة و
-                            السجائر . نتائج مذهلة و ملحوظة من أول استخدام
-                        </p>
-                        <p style="margin-top: 20px; width: 200px">
-                            -جهاز التبييض : يعمل جهاز الضوء على تسريع عملية التفتيح يقوم بتبييض
-                            الأسنان حتى ثمان درجات
-                        </p>
-                        <p style="margin-top: 20px; width: 400px">
-                            -معجون التبييض : معجون الأسنان المبيض الأكثر فعالية لإزالة البقع آمن
-                            و لا يسبب أي حساسية فهو مصنوع من مستخلصات الأعشاب يحتوي على تركيبة
-                            جل فريدة مصممة للحصول على عناية و نظافة فائقة
-                        </p>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
     <!--Product  -->
     <!-- Testimonial -->
-    {{-- <div class="swiper-container testimonial-swiper">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">
-                <div class="testimonial-content">
-                    <p>استخدمت منتجين منها والنتائج رهيبة كيف لو استخدمها كلها</p>
-                    <div class="testimonial-author">
-                        <span>اربح الزهراني</span>
-                        <div class="rating">
-                            <span>★★★★★</span>
+    <div id="testimonialCarousel" class="carousel slide mt-5" data-ride="carousel" data-interval="3000">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="d-flex align-items-center justify-content-center h-100">
+                    <div class="testimonial-content text-center">
+                        <p class="mx-auto" style="max-width: 100%;">استخدمت منتجين منها والنتائج رهيبة كيف لو استخدمها
+                            كلها</p>
+                        <div class="testimonial-author">
+                            <span>اربح الزهراني</span>
+                            <div class="rating">
+                                <span>★★★★★</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="swiper-slide">
-                <div class="testimonial-content">
-                    <p>استخدمت منتجين منها والنتائج رهيبة كيف لو استخدمها كلها</p>
-                    <div class="testimonial-author">
-                        <span>اربح الزهراني</span>
-                        <div class="rating">
-                            <span>★★★★★</span>
+            <div class="carousel-item">
+                <div class="d-flex align-items-center justify-content-center h-100">
+                    <div class="testimonial-content text-center">
+                        <p class="mx-auto" style="max-width: 100%;">استخدمت منتجين منها والنتائج رهيبة كيف لو استخدمها
+                            كلها</p>
+                        <div class="testimonial-author">
+                            <span>اربح الزهراني</span>
+                            <div class="rating">
+                                <span>★★★★★</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="swiper-slide">
-                <div class="testimonial-content">
-                    <p>استخدمت منتجين منها والنتائج رهيبة كيف لو استخدمها كلها</p>
-                    <div class="testimonial-author">
-                        <span>اربح الزهراني</span>
-                        <div class="rating">
-                            <span>★★★★★</span>
+            <div class="carousel-item">
+                <div class="d-flex align-items-center justify-content-center h-100">
+                    <div class="testimonial-content text-center">
+                        <p class="mx-auto" style="max-width: 100%;">استخدمت منتجين منها والنتائج رهيبة كيف لو استخدمها
+                            كلها</p>
+                        <div class="testimonial-author">
+                            <span>اربح الزهراني</span>
+                            <div class="rating">
+                                <span>★★★★★</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Add more slides as needed -->
         </div>
-        <!-- Add Pagination -->
-        <div class="swiper-pagination"></div>
-    </div> --}}
+        <!-- Controls -->
+        <a class="carousel-control-prev" href="#testimonialCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon bg-dark" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#testimonialCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon bg-dark" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+
+
     <!-- Testimonial -->
 
     <!-- Timer -->
-    {{-- <div class="timer-container">
+    <div class="timer-container">
         <h2>باقي على انتهاء الخصم</h2>
         <div class="timer">
             <div class="time-unit">
@@ -152,10 +144,10 @@
                 <div>ثواني</div>
             </div>
         </div>
-    </div> --}}
+    </div>
     <!-- Timer -->
     <!-- Payment Form -->
-    {{-- <div class="container mt-5">
+    <div class="container mt-5">
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
@@ -170,21 +162,19 @@
             </div>
         @endif
 
-
-
-        <h2 class="text-center mb-4">الدفع عند التسليم</h2>
-
-        <form class="bg-white shadow-sm p-5 rounded-md" action="{{ route('send-form') }}" method="post">
+        <h2 class="text-center ">الدفع عند التسليم</h2>
+        <form class="order-form bg-white shadow-sm p-5 rounded-md" action="{{ route('send-form') }}" method="post">
             @csrf
             @method('POST')
-            <div class="mb-3">
+            <div class="mb-3 form-group">
                 <label for="name" class="form-label">الاسم كاملا *</label>
-                <input type="text" name="name" class="form-control" id="name" />
+                <input type="text" id="name" name="name" required class="form-control" dir="rtl"
+                       placeholder="الاسم كاملا"/>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 form-group">
                 <label for="number" class="form-label">الجوال *</label>
-                <div class="input-group d-flex gap-2">
-                    <select class="form-select" name="country_code" id="country_code">
+                <div class="input-group">
+                    <select class="form-select" name="country_code" id="country_code" dir="rtl">
                         <option value="+966">السعودية (+966)</option>
                         <option value="+971">الإمارات (+971)</option>
                         <option value="+973">البحرين (+973)</option>
@@ -192,52 +182,69 @@
                         <option value="+968">عمان (+968)</option>
                         <option value="+974">قطر (+974)</option>
                     </select>
-                    <input type="text" name="number" required class="form-control" id="number" placeholder="الجوال" />
                 </div>
-                <small>يرجى عدم ادخال كود الدولة وابدأ بالرقم 5 او 05</small>
             </div>
-            <div class="mb-3">
-                <label for="address" class="form-label">العنوا وطلبك *</label>
-                <textarea class="form-control" name="address" id="address"></textarea>
+            <div class="mb-3 form-group">
+                <label for="number" class="form-label">رقم الجوال *</label>
+                <input type="number" name="number" required class="form-control" id="number" placeholder="رقم الجوال"
+                       dir="rtl"/>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 form-group">
+                <label for="address" class="form-label">العنوان وطلبك *</label>
+                <textarea class="form-control" name="address" id="address" dir="rtl"></textarea>
+            </div>
+            <div class="mb-3 form-group">
                 <label class="form-label">اختر العرض:</label>
-                <div class="form-check p-3 mb-2 border bg-light rounded">
-                    <input class="form-check-input" type="radio" id="offer1" name="offer" value="offer1" />
-                    <label class="form-check-label" for="offer1">اشترى 1 بسعر 199 ريال +25 رسوم توصيل</label>
+                <div
+                    class="form-check p-3 d-flex align-items-center justify-content-between mb-2 border bg-light rounded">
+                    <label class="form-check-label mr-auto" for="offer1">اشترى 1 بسعر 199 ريال +25 رسوم توصيل</label>
+                    <input class="form-check-input ml-2" type="radio" id="offer1" name="offer" value="offer1"/>
                 </div>
-                <div class="form-check p-3 mb-2 border bg-light rounded">
-                    <input class="form-check-input" type="radio" id="offer2" name="offer" value="offer2" />
-                    <label class="form-check-label pl-3" for="offer2">اشترى 2 بسعر 329 ريال (توصيل مجاني)</label>
-                </div>
-                <div class="form-check p-3 mb-2 border bg-light rounded">
-                    <input class="form-check-input" type="radio" id="offer3" name="offer" value="offer3" />
-                    <label class="form-check-label" for="offer3">اشترى 3 بسعر 399 ريال (توصيل مجاني)</label>
-                </div>
-            </div>
 
-            <button type="submit" class="btn btn-primary">تأكيد الطلب</button>
+                <div
+                    class="form-check d-flex align-items-center justify-content-between p-3 mb-2 border bg-light rounded">
+                    <label class="form-check-label mr-auto" for="offer2">اشترى 2 بسعر 329 ريال (توصيل مجاني)</label>
+                    <input class="form-check-input ml-2" type="radio" id="offer2" name="offer" value="offer2"/>
+                </div>
+
+                <div
+                    class="form-check d-flex align-items-center justify-content-between p-3 mb-2 border bg-light rounded">
+                    <label class="form-check-label mr-auto" for="offer3">اشترى 3 بسعر 399 ريال (توصيل مجاني)</label>
+                    <input class="form-check-input ml-2" type="radio" id="offer3" name="offer" value="offer3"/>
+                </div>
+
+            </div>
+            <button type="submit" class="submit-btn btn btn-primary w-100">تأكيد الطلب</button>
         </form>
 
-    </div> --}}
+    </div>
 
     <!-- Payment Form -->
     <!--company  -->
-    {{-- <div class="company">
+    <div class="company my-4">
         <div class="container">
-            <div class="title">نحن نشحن بضائعنا مع شركة</div>
-            <div class="logos">
-                <img src="{{ asset('frontend/assets/images/portfolio-1.jpg') }}" alt="Quickship" />
-                <img src="{{ asset('frontend/assets/images/portfolio-1.jpg') }}" alt="Email" />
-                <img src="{{ asset('frontend/assets/images/portfolio-1.jpg') }}" alt="SMSA" />
+            <h4 class="title text-center mb-3">نحن نشحن بضائعنا مع شركة</h4>
+            <div class="row">
+                <div class="col-lg-3">
+                    <img src="{{ asset('frontend/assets/images/portfolio-1.jpg') }}" alt="Quickship"/>
+                </div>
+                <div class="col-lg-3">
+                    <img src="{{ asset('frontend/assets/images/portfolio-1.jpg') }}" alt="Quickship"/>
+                </div>
+                <div class="col-lg-3">
+                    <img src="{{ asset('frontend/assets/images/portfolio-1.jpg') }}" alt="Quickship"/>
+                </div>
+                <div class="col-lg-3">
+                    <img src="{{ asset('frontend/assets/images/portfolio-1.jpg') }}" alt="Quickship"/>
+                </div>
             </div>
         </div>
     </div> --}}
     <!--company  -->
     <!-- Footer -->
-    {{-- <div class="footer">
+    <div class="footer">
         <p>Developed by: <span>Abdallh Elzayat</span></p>
-    </div> --}}
+    </div>
     <!-- Footer -->
 @endsection
 

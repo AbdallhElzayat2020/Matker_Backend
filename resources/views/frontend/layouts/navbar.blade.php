@@ -2,7 +2,7 @@
     $categories = \App\Models\Category::all();
 @endphp
 <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
-    <div class="container-fluid">
+    <div class="container-fluid text-center">
         <a class="navbar-brand" href="{{ url('/') }}">
             <img style="width: 50px; height: 50px;" src="{{ asset('frontend/assets/images/logo.png') }}" alt="">
         </a>
