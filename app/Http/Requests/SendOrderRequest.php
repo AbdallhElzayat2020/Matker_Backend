@@ -26,7 +26,7 @@ class SendOrderRequest extends FormRequest
             'country_code' => ['required', 'in:+966,+971,+973,+965,+968,+974,+20'],
             'number' => ['required', 'string', 'max:20'],
             'address' => ['required', 'string'],
-            'offer' => ['required', 'in:offer1,offer2,offer3'],
+            'offer' => ['required', 'in:اشترى 1 بسعر 199 ريال +25 رسوم توصيل,اشترى 2 بسعر 329 ريال (توصيل مجاني),اشترى 3 بسعر 399 ريال (توصيل مجاني)'],
         ];
     }
 }

@@ -184,7 +184,7 @@
             </div>
             <div class="mb-3 form-group">
                 <label for="number" class="form-label">رقم الجوال *</label>
-                <input type="number" name="number" required class="form-control" id="number"
+                <input type="number" name="number" value="{{old('name')}}" required class="form-control" id="number"
                        placeholder="رقم الجوال"
                        dir="rtl"/>
             </div>
@@ -196,23 +196,23 @@
                 <label class="form-label">اختر العرض:</label>
                 <div
                     class="form-check p-3 d-flex align-items-center justify-content-between mb-2 border bg-light rounded">
-                    <label class="form-check-label mr-auto" for="offer1">اشترى 1 بسعر 199 ريال +25 رسوم
-                        توصيل</label>
-                    <input class="form-check-input ml-2" type="radio" id="offer1" name="offer" value="offer1"/>
+                    <label class="form-check-label mr-auto" for="offer1">اشترى 1 بسعر 199 ريال +25 رسوم توصيل</label>
+                    <input class="form-check-input ml-2" type="radio" id="offer1" name="offer"
+                           value="اشترى 1 بسعر 199 ريال +25 رسوم توصيل"/>
                 </div>
 
                 <div
                     class="form-check d-flex align-items-center justify-content-between p-3 mb-2 border bg-light rounded">
-                    <label class="form-check-label mr-auto" for="offer2">اشترى 2 بسعر 329 ريال (توصيل
-                        مجاني)</label>
-                    <input class="form-check-input ml-2" type="radio" id="offer2" name="offer" value="offer2"/>
+                    <label class="form-check-label mr-auto" for="offer2">اشترى 2 بسعر 329 ريال (توصيل مجاني)</label>
+                    <input class="form-check-input ml-2" type="radio" id="offer2" name="offer"
+                           value="اشترى 2 بسعر 329 ريال (توصيل مجاني)"/>
                 </div>
 
                 <div
                     class="form-check d-flex align-items-center justify-content-between p-3 mb-2 border bg-light rounded">
-                    <label class="form-check-label mr-auto" for="offer3">اشترى 3 بسعر 399 ريال (توصيل
-                        مجاني)</label>
-                    <input class="form-check-input ml-2" type="radio" id="offer3" name="offer" value="offer3"/>
+                    <label class="form-check-label mr-auto" for="offer3">اشترى 3 بسعر 399 ريال (توصيل مجاني)</label>
+                    <input class="form-check-input ml-2" type="radio" id="offer3" name="offer"
+                           value="اشترى 3 بسعر 399 ريال (توصيل مجاني)"/>
                 </div>
 
             </div>
