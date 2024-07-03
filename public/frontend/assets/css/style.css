@@ -356,6 +356,7 @@ body {
 .footer p {
     color: #fff;
     text-align: center;
+    padding: 15px;
     background-color: #23527c;
     font-size: 20px;
     font-weight: bold;

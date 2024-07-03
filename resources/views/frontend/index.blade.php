@@ -239,10 +239,10 @@
 
             </div>
         </div>
-    </div> --}}
+    </div>
     <!--company  -->
     <!-- Footer -->
-    <div class="footer">
+    <div class="footer p-2">
         <p>Developed by: <span>Abdallh Elzayat</span></p>
     </div>
     <!-- Footer -->
