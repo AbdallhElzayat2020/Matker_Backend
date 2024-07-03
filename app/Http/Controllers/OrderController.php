@@ -19,6 +19,7 @@ class OrderController extends Controller
         $formData->country_code = $request->country_code;
         $formData->number = $request->number;
         $formData->address = $request->address;
+        $formData->status = 0;
         $formData->offer = $request->offer;
         $formData->save();
         return redirect()->back()->with('success', 'تم تقديم النموذج بنجاح!');

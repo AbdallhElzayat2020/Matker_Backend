@@ -42,7 +42,7 @@
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $order->name }}</td>
                                     <td>
-                                        <a href="https://wa.me/{{$order->country_code}}{{$order->number}}">{{ $order->number }}</a>
+                                        <a target="_blank" href="https://wa.me/{{$order->country_code}}{{$order->number}}">{{ $order->number }}</a>
                                     </td>
                                     <td>{{ $order->address }}</td>
                                     <td>{{ $order->created_at }}</td>
