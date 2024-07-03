@@ -226,18 +226,17 @@
         <div class="container">
             <h4 class="title text-center mb-3">نحن نشحن بضائعنا مع شركة</h4>
             <div class="row d-flex align-items-center justify-content-center">
-                <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
-                    <img src="{{ asset('frontend/assets/images/portfolio-1.jpg') }}" alt="Quickship"/>
-                </div>
-                <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
-                    <img src="{{ asset('frontend/assets/images/portfolio-1.jpg') }}" alt="Quickship"/>
-                </div>
-                <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
-                    <img src="{{ asset('frontend/assets/images/portfolio-1.jpg') }}" alt="Quickship"/>
-                </div>
-                <div class="col-lg-3 col-md-6 d-flex align-items-center justify-content-center">
-                    <img src="{{ asset('frontend/assets/images/portfolio-1.jpg') }}" alt="Quickship"/>
-                </div>
+                @foreach($companies as $key=>$company)
+                    <div class="col-lg-3 my-2 col-md-6 d-flex align-items-center justify-content-center">
+                        <div class="company text-center">
+                            <h5>
+                                {{$company->name}}
+                            </h5>
+                            <img src="{{ asset($company->image) }}" alt="{{$company->name}}"/>
+                        </div>
+                    </div>
+                @endforeach
+
             </div>
         </div>
     </div> --}}

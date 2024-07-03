@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\CompanyController;
 use App\Http\Controllers\OrderController;
-use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\AdminBoxController;
@@ -31,8 +31,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['admin']],
     Route::resource('order', AdminOrderController::class);
     // Route Boxes
     Route::resource('boxs', AdminBoxController::class);
-//    Route::resource('company', AdminCompanyController::class);
     // Route update Status
     Route::get('order/update-status/{id}/{status}', [AdminOrderController::class, 'updateStatus'])->name('order.updateStatus');
-
+//Route company footer
+    Route::resource('company', CompanyController::class);
 });

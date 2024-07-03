@@ -30,6 +30,10 @@
                 <a class="nav-link " href="{{ route('admin.order.index') }}"><i class="fas fa-fire"></i>
                     <span>orders</span></a>
             </li>
+            <li class="">
+                <a class="nav-link " href="{{ route('admin.company.index') }}"><i class="fas fa-fire"></i>
+                    <span>CompanyFooter</span></a>
+            </li>
         </ul>
     </aside>
 </div>
