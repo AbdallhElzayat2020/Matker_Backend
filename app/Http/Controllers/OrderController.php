@@ -16,6 +16,7 @@ class OrderController extends Controller
         // dd($request->all());
         $formData = new Order;
         $formData->name = $request->name;
+        $formData->country_code = $request->country_code;
         $formData->number = $request->number;
         $formData->address = $request->address;
         $formData->offer = $request->offer;

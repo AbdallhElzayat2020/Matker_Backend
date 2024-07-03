@@ -23,9 +23,10 @@ class SendOrderRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
+            'country_code' => ['required', 'in:+966,+971,+973,+965,+968,+974,+20'],
             'number' => ['required', 'string', 'max:20'],
             'address' => ['required', 'string'],
-            'offer' => ['required', 'in:offer1,offer2,offer3,offer4'],
+            'offer' => ['required', 'in:offer1,offer2,offer3'],
         ];
     }
 }

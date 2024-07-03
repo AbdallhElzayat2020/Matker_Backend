@@ -31,7 +31,7 @@
                     <div class="col-lg-3 mb-2">
                         <img style="width: 100%; max-width: 100%; height: 150px" src="{{ asset($box->image) }}"
                              alt=""/>
-                        <h5 class="text-center">{{$box->title}}</h4>
+                        <h5 class="text-center">{{$box->title}}</h5>
                     </div>
                 @endforeach
             </div>
@@ -62,7 +62,7 @@
     </div>
     <!--Product  -->
     <!-- Testimonial -->
-    <div id="testimonialCarousel" class="carousel slide mt-5" data-ride="carousel" data-interval="3000">
+    <div id="testimonialCarousel" class="carousel slide mt-5" data-ride="carousel" data-interval="2000">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <div class="d-flex align-items-center justify-content-center h-100">
@@ -119,8 +119,6 @@
         </a>
     </div>
 
-
-
     <!-- Testimonial -->
 
     <!-- Timer -->
@@ -162,8 +160,8 @@
             </div>
         @endif
 
-        <h2 class="text-center ">الدفع عند التسليم</h2>
-        <form class="order-form bg-white shadow-sm p-5 rounded-md" action="{{ route('send-form') }}" method="post">
+        <form class="order-form bg-white shadow-sm p-5 rounded-md" action="{{ route('send-form') }}"
+              method="post">
             @csrf
             @method('POST')
             <div class="mb-3 form-group">
@@ -186,7 +184,8 @@
             </div>
             <div class="mb-3 form-group">
                 <label for="number" class="form-label">رقم الجوال *</label>
-                <input type="number" name="number" required class="form-control" id="number" placeholder="رقم الجوال"
+                <input type="number" name="number" required class="form-control" id="number"
+                       placeholder="رقم الجوال"
                        dir="rtl"/>
             </div>
             <div class="mb-3 form-group">
@@ -197,26 +196,28 @@
                 <label class="form-label">اختر العرض:</label>
                 <div
                     class="form-check p-3 d-flex align-items-center justify-content-between mb-2 border bg-light rounded">
-                    <label class="form-check-label mr-auto" for="offer1">اشترى 1 بسعر 199 ريال +25 رسوم توصيل</label>
+                    <label class="form-check-label mr-auto" for="offer1">اشترى 1 بسعر 199 ريال +25 رسوم
+                        توصيل</label>
                     <input class="form-check-input ml-2" type="radio" id="offer1" name="offer" value="offer1"/>
                 </div>
 
                 <div
                     class="form-check d-flex align-items-center justify-content-between p-3 mb-2 border bg-light rounded">
-                    <label class="form-check-label mr-auto" for="offer2">اشترى 2 بسعر 329 ريال (توصيل مجاني)</label>
+                    <label class="form-check-label mr-auto" for="offer2">اشترى 2 بسعر 329 ريال (توصيل
+                        مجاني)</label>
                     <input class="form-check-input ml-2" type="radio" id="offer2" name="offer" value="offer2"/>
                 </div>
 
                 <div
                     class="form-check d-flex align-items-center justify-content-between p-3 mb-2 border bg-light rounded">
-                    <label class="form-check-label mr-auto" for="offer3">اشترى 3 بسعر 399 ريال (توصيل مجاني)</label>
+                    <label class="form-check-label mr-auto" for="offer3">اشترى 3 بسعر 399 ريال (توصيل
+                        مجاني)</label>
                     <input class="form-check-input ml-2" type="radio" id="offer3" name="offer" value="offer3"/>
                 </div>
 
             </div>
             <button type="submit" class="submit-btn btn btn-primary w-100">تأكيد الطلب</button>
         </form>
-
     </div>
 
     <!-- Payment Form -->

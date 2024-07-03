@@ -16,7 +16,7 @@ class AdminOrderController extends Controller
         $orders = Order::all();
         return view('admin.order.index', compact('orders'));
     }
-   
+
     /**
      * Remove the specified resource from storage.
      */
