@@ -62,62 +62,34 @@
     </div>
     <!--Product  -->
     <!-- Testimonial -->
-    <div id="testimonialCarousel" class="carousel slide mt-5" data-ride="carousel" data-interval="2000">
+    <div id="testimonialCarousel" class="carousel slide my-5" data-bs-ride="carousel" data-bs-interval="3000">
+        <h4 class="text-center my-4">اراء العملاء في خدماتنا </h4>
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="d-flex align-items-center justify-content-center h-100">
-                    <div class="testimonial-content text-center">
-                        <p class="mx-auto" style="max-width: 100%;">استخدمت منتجين منها والنتائج رهيبة كيف لو استخدمها
-                            كلها</p>
-                        <div class="testimonial-author">
-                            <span>اربح الزهراني</span>
-                            <div class="rating">
-                                <span>★★★★★</span>
+            @foreach($clients as $key => $client)
+                <div class="carousel-item @if($key == 0) active @endif">
+                    <div class="d-flex align-items-center justify-content-center h-100">
+                        <div class="testimonial-content text-center">
+                            <p class="mx-auto" style="max-width: 100%;">
+                                {{$client->description}}
+                            </p>
+                            <div class="testimonial-author">
+                                <span>{{$client->name}}</span>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="carousel-item">
-                <div class="d-flex align-items-center justify-content-center h-100">
-                    <div class="testimonial-content text-center">
-                        <p class="mx-auto" style="max-width: 100%;">استخدمت منتجين منها والنتائج رهيبة كيف لو استخدمها
-                            كلها</p>
-                        <div class="testimonial-author">
-                            <span>اربح الزهراني</span>
-                            <div class="rating">
-                                <span>★★★★★</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="d-flex align-items-center justify-content-center h-100">
-                    <div class="testimonial-content text-center">
-                        <p class="mx-auto" style="max-width: 100%;">استخدمت منتجين منها والنتائج رهيبة كيف لو استخدمها
-                            كلها</p>
-                        <div class="testimonial-author">
-                            <span>اربح الزهراني</span>
-                            <div class="rating">
-                                <span>★★★★★</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Add more slides as needed -->
+            @endforeach
         </div>
-        <!-- Controls -->
-        <a class="carousel-control-prev" href="#testimonialCarousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon bg-dark" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#testimonialCarousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon bg-dark" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon bg-danger" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon bg-danger" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
+
 
     <!-- Testimonial -->
 
