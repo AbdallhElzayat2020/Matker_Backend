@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminOrderController;
 
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     //Auth Routes
     Route::get('login', [AdminAuthController::class, 'login'])->name('login');
@@ -18,6 +19,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::post('logout', [AdminAuthController::class, 'logout'])->name('logout');
 });
+
 
 // Protected Routes
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['admin']], function () {
@@ -32,7 +34,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['admin']],
     // Route Boxes
     Route::resource('boxs', AdminBoxController::class);
     // Route update Status
-    Route::get('order/update-status/{id}/{status}', [AdminOrderController::class, 'updateStatus'])->name('order.updateStatus');
-//Route company footer
+    Route::get('update-status/{id}/{status}', [AdminOrderController::class, 'updateStatus'])->name('order.updateStatus');
+    //Route company footer
     Route::resource('company', CompanyController::class);
 });
