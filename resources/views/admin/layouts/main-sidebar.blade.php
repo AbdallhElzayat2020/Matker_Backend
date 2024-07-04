@@ -31,6 +31,10 @@
                     <span>orders</span></a>
             </li>
             <li class="">
+                <a class="nav-link " href="{{ route('admin.clients.index') }}"><i class="fas fa-fire"></i>
+                    <span>Testimonials</span></a>
+            </li>
+            <li class="">
                 <a class="nav-link " href="{{ route('admin.company.index') }}"><i class="fas fa-fire"></i>
                     <span>CompanyFooter</span></a>
             </li>

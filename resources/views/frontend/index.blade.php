@@ -214,8 +214,8 @@
     </div>
     <!--company  -->
     <!-- Footer -->
-    <div class="footer p-2">
-        <p>Developed by: <span>Abdallh Elzayat</span></p>
+    <div class="footer p-2 text-center bg-dark text-white">
+        <a href="https://wa.me/201212484233">Developed by: <span style="color: #25D366">Abdallh Elzayat</span></a>
     </div>
     <!-- Footer -->
 @endsection

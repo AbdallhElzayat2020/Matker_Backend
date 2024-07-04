@@ -8,7 +8,7 @@
 <script>
     $(document).ready(function () {
         $('#testimonialCarousel').carousel({
-            interval: 1000 // يمكنك تغيير الوقت بين الانتقالات هنا
+            interval: 3000 // يمكنك تغيير الوقت بين الانتقالات هنا
         });
     });
 </script>

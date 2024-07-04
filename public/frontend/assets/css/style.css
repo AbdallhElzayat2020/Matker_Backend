@@ -353,14 +353,12 @@ body {
 
 /*=========================
 ===========================start Footer  */
-.footer p {
+.footer a {
     color: #fff;
-    text-align: center;
-    padding: 15px;
-    background-color: #23527c;
-    font-size: 20px;
-    font-weight: bold;
 }
-
+.footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
 /*=========================
 ===========================End Footer  */
