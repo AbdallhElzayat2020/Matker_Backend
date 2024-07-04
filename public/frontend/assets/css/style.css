@@ -31,12 +31,12 @@ body {
     padding: 0;
 }
 
-.container {
-    padding-left: 15px;
-    padding-right: 15px;
-    margin-left: auto;
-    margin-right: auto;
-}
+/*.container {*/
+/*    padding-left: 15px;*/
+/*    padding-right: 15px;*/
+/*    margin-left: auto;*/
+/*    margin-right: auto;*/
+/*}*/
 
 @media (min-width: 768px) {
     .container {

@@ -28,6 +28,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['admin']],
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
     // Route Categories
     Route::resource('category', CategoryController::class);
+
     // Route Products
     Route::resource('product', ProductController::class);
     // Route Orders
@@ -40,4 +41,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['admin']],
     Route::resource('clients', ClientController::class);
     //Route company footer
     Route::resource('company', CompanyController::class);
+
+
 });

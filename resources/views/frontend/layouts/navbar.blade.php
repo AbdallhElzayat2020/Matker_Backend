@@ -7,7 +7,7 @@
             <img style="width: 50px; height: 50px;" src="{{ asset('frontend/assets/images/logo.png') }}" alt="">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -17,12 +17,13 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
+                       aria-expanded="false">
                         الاقسام
                     </a>
                     <ul class="dropdown-menu">
                         @foreach ($categories as $category)
-                            <li><a class="dropdown-item" href="#">{{ $category->name }}</a></li>
+                            <li><a class="dropdown-item"
+                                   href="{{ route('category.products', $category->id) }}">{{ $category->name }}</a></li>
                         @endforeach
                     </ul>
                 </li>

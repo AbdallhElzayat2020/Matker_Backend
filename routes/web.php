@@ -19,10 +19,13 @@ use App\Http\Controllers\frontend\ProductController;
 
 Route::get('/', [HomeController::class, 'index']);
 
-// send Form 
+// send Form
 Route::post('sendform', [OrderController::class, 'send'])->name('send-form');
-
+//Product Details
 Route::get('/product-details/{id}', [ProductController::class, 'index'])->name('product-details');
+
+//Route Categories Page
+Route::get('/category/{id}', [ProductController::class, 'showCategoryProducts'])->name('category.products');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
