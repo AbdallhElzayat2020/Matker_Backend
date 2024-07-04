@@ -13,14 +13,15 @@
                 <h4>Update Category</h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.category.store') }}" method="post">
+                <form action="{{ route('admin.category.update', $category->id) }}" method="post">
                     @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input name="name" placeholder="Category Name" value="{{ $category->name }}" id="name"
-                            type="text" class="form-control">
+                               type="text" class="form-control">
                         @error('name')
-                            <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <button class="btn btn-primary" type="submit">Update</button>
