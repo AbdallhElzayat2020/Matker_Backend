@@ -19,9 +19,10 @@ class ProductController extends Controller
         return view('frontend.product.product-details', compact('product'));
     }
 
-    public function showCategoryProducts($id) {
+    public function showCategoryProducts($id)
+    {
         $category = Category::find($id);
-        $products = Product::where('category_id', $id)->get();
+        $products = Product::where('category_id', $id)->paginate(7);
         return view('frontend.product.category', compact('category', 'products'));
     }
 
