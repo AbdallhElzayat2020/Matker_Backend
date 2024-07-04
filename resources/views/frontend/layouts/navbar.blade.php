@@ -15,9 +15,6 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ url('/') }}">الرئيسية</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="">المنتجات</a>
-                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -30,7 +27,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">اتصل بنا</a>
+                    <a class="nav-link" href="#contact">اطلب الان</a>
                 </li>
             </ul>
         </div>

@@ -132,7 +132,7 @@
             </div>
         @endif
 
-        <form class="order-form bg-white shadow-sm p-5 rounded-md" action="{{ route('send-form') }}"
+        <form id="contact" class="order-form bg-white shadow-sm p-5 rounded-md" action="{{ route('send-form') }}"
               method="post">
             @csrf
             @method('POST')
