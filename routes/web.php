@@ -1,10 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Frontend\HomeController;
-use App\Http\Controllers\frontend\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,15 +14,16 @@ use App\Http\Controllers\frontend\ProductController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [\App\Http\Controllers\frontend\HomeController::class, 'index']);
+//Route::get('/', [\App\Http\Controllers\frontend\HomeController::class, 'index']);
 
 // send Form
-Route::post('sendform', [OrderController::class, 'send'])->name('send-form');
+Route::post('sendform', [\App\Http\Controllers\OrderController::class, 'send'])->name('send-form');
 //Product Details
-Route::get('/product-details/{id}', [ProductController::class, 'index'])->name('product-details');
+Route::get('/product-details/{id}', [\App\Http\Controllers\frontend\ProductController::class, 'index'])->name('product-details');
 
 //Route Categories Page
-Route::get('/category/{id}', [ProductController::class, 'showCategoryProducts'])->name('category.products');
+Route::get('/category/{id}', [\App\Http\Controllers\frontend\ProductController::class, 'showCategoryProducts'])->name('category.products');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

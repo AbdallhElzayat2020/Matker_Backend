@@ -24,6 +24,7 @@ class OrderController extends Controller
         $formData->save();
         return redirect()->back()->with('success', 'تم تقديم النموذج بنجاح!');
 
+
     }
 
     /**

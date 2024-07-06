@@ -7,7 +7,6 @@ use App\Models\Client;
 use App\Models\CompanyFooter;
 use App\Models\Product;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
@@ -19,7 +18,7 @@ class HomeController extends Controller
         $companies = CompanyFooter::all();
         $categories = Category::all();
         $boxes = Boxe::all();
-        return view('frontend.index', compact('products', 'categories', 'boxes', 'companies', 'clients'));
+        return view('frontend.home', compact('products', 'categories', 'boxes', 'companies', 'clients'));
     }
 
 }

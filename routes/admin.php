@@ -1,46 +1,37 @@
 <?php
 
-use App\Http\Controllers\Admin\ClientController;
-use App\Http\Controllers\Admin\CompanyController;
-use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\AdminBoxController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\AdminAuthController;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\AdminOrderController;
 
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     //Auth Routes
-    Route::get('login', [AdminAuthController::class, 'login'])->name('login');
+    Route::get('login', [\App\Http\Controllers\Admin\AdminAuthController::class, 'login'])->name('login');
 
-    Route::post('login', [AdminAuthController::class, 'handleLogin'])->name('handle-login');
+    Route::post('login', [\App\Http\Controllers\Admin\AdminAuthController::class, 'handleLogin'])->name('handle-login');
 
-    Route::post('logout', [AdminAuthController::class, 'logout'])->name('logout');
+    Route::post('logout', [\App\Http\Controllers\Admin\AdminAuthController::class, 'logout'])->name('logout');
 });
 
 
 // Protected Routes
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['admin']], function () {
 
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     // Route Categories
-    Route::resource('category', CategoryController::class);
+    Route::resource('category', \App\Http\Controllers\Admin\CategoryController::class);
 
     // Route Products
-    Route::resource('product', ProductController::class);
+    Route::resource('product', \App\Http\Controllers\Admin\ProductController::class);
     // Route Orders
-    Route::resource('order', AdminOrderController::class);
+    Route::resource('order', \App\Http\Controllers\Admin\AdminOrderController::class);
     // Route Boxes
-    Route::resource('boxs', AdminBoxController::class);
+    Route::resource('boxs', \App\Http\Controllers\Admin\AdminBoxController::class);
     // Route update Status
-    Route::get('update-status/{id}/{status}', [AdminOrderController::class, 'updateStatus'])->name('order.updateStatus');
+    Route::get('update-status/{id}/{status}', [\App\Http\Controllers\Admin\AdminOrderController::class, 'updateStatus'])->name('order.updateStatus');
     // Route Boxes
-    Route::resource('clients', ClientController::class);
+    Route::resource('clients', \App\Http\Controllers\Admin\ClientController::class);
     //Route company footer
-    Route::resource('company', CompanyController::class);
+    Route::resource('company', \App\Http\Controllers\Admin\CompanyController::class);
 
 
 });

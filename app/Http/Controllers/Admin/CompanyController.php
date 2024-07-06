@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\AdminBoxCreateRequest;
 use App\Http\Requests\Admin\AdminCompanyCreateRequest;
-use App\Models\Boxe;
-use App\Models\companyFooter;
+use App\Models\CompanyFooter;
 use App\traits\FileUploadTrait;
 use Illuminate\Http\Request;
 
