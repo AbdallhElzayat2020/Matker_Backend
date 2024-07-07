@@ -31,12 +31,12 @@ body {
     padding: 0;
 }
 
-.container {
-    padding-left: 15px;
-    padding-right: 15px;
-    margin-left: auto;
-    margin-right: auto;
-}
+/*.container {*/
+/*    padding-left: 15px;*/
+/*    padding-right: 15px;*/
+/*    margin-left: auto;*/
+/*    margin-right: auto;*/
+/*}*/
 
 @media (min-width: 768px) {
     .container {
@@ -212,7 +212,7 @@ body {
     text-align: center;
     font-size: 18px;
     background: #fff;
-    height: 400px;
+    height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -435,8 +435,6 @@ body {
 }
 
 /*form*/
-
-/*Description in product Details*/
 @media (max-width: 762px) {
     .text_info .description {
         font-size: 14px;
@@ -462,14 +460,48 @@ body {
 
 /*=========================
 ===========================start Footer  */
-.footer a {
-    color: #fff;
-}
 
-.footer a:hover {
-    color: #fff;
-    text-decoration: none;
-}
 
 /*=========================
 ===========================End Footer  */
+
+
+/*Home Page*/
+.home .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.home .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.home .card-body {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.home .card-img-top {
+    border-bottom: 1px solid #ddd;
+    object-fit: cover;
+}
+
+.home a.text-decoration-none {
+    text-decoration: none !important;
+}
+
+.home a.text-dark {
+    color: #000 !important;
+}
+
+.home .pagination {
+    margin-top: 20px;
+}
+
+/*Home Page*/

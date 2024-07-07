@@ -14,7 +14,8 @@ class HomeController extends Controller
     public function index()
     {
         $clients = Client::all();
-        $products = Product::all();
+//        $products = Product::all();
+        $products = Product::paginate(10);
         $companies = CompanyFooter::all();
         $categories = Category::all();
         $boxes = Boxe::all();

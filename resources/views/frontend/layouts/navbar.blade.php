@@ -37,12 +37,12 @@
 @endphp
 
 <div class="navbar">
-    <div class="container">
+    <div class="container px-3">
         <i class="fas fa-bars menu-icon" onclick="toggleMenu()"></i>
-        <div class="logo">
-            <img src="{{ asset('frontend/assets/images/logo.png') }}" alt="Logo"/>
+        <a href="{{ url('/') }}" class="logo text-decoration-none text-black">
+            {{--            <img src="{{ asset('frontend/assets/images/logo.png') }}" alt="Logo"/>--}}
             <span>MATAJER</span>
-        </div>
+        </a>
         <div class="search-box">
             <i class="fas fa-search"></i>
             <input type="text" placeholder="بحث..."/>

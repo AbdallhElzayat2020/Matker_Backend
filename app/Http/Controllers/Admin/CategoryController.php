@@ -92,7 +92,7 @@ class CategoryController extends Controller
              } else {
                  return response(['status' => 'error', 'message' => 'Products NOT FOUND'], 404);
              }
-
+             
              $category->delete();
 
              return response(['status' => 'success', 'message' => 'Deleted successfully']);

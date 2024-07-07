@@ -18,8 +18,6 @@
             @endforeach
         </div>
     </div>
-
-
     <!-- Swiper -->
 
     <!-- Section 2 -->

@@ -41,7 +41,8 @@
                     </div>
                     <div class="form-group">
                         <label for="product">المتبقي بالمخزون</label>
-                        <input name="product" required placeholder="product" value="{{ old('product') }}" id="description"
+                        <input name="product" required placeholder="product" value="{{ old('product') }}"
+                               id="description"
                                type="number" class="form-control">
                         @error('product')
                         <p class="text-danger">{{ $message }}</p>

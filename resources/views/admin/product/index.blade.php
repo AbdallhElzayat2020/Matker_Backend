@@ -39,6 +39,7 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $product->title }}</td>
+
                                     <td><img src="{{ asset($product->image) }}" alt="{{ $product->title }}"
                                              width="70" height="50">
                                     </td>

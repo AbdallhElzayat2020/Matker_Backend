@@ -27,7 +27,7 @@ class AdminCreateProductRequest extends FormRequest
             'product' => ['required', 'max:255'],
             'price' => ['required', 'max:255'],
             'category_id' => ['required'],
-            'image' => ['required', 'max:5000', 'image'],
+            'image' => ['required', 'max:4000', 'image', 'mimes:jpeg,png,jpg'],
         ];
     }
 }

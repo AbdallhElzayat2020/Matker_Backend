@@ -7,7 +7,6 @@ function toggleMenu() {
         sidebar.style.width = "250px";
     }
 }
-
 // EndToggle the Sidebar
 
 // Start Home-swiper
@@ -17,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
         spaceBetween: 30, // المسافة بين الشرائح
         loop: true, // تكرار الشرائح
         pagination: {
-            el: ".swiper-pagination",
+            // el: ".swiper-pagination",
             clickable: true,
         },
         breakpoints: {
