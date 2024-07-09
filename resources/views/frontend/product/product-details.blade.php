@@ -24,9 +24,7 @@
         </div>
         <div class="product-description text-right">
             <p>مواصفات المنتج :{{ $product->description }}</p>
-            <h5>السعر : {{ $product->price }}</h5>
-            {{--            <p>مواصفات المنتج :{{ $product->description }}</p>--}}
-            {{--            <h4>ال: {{ $product->price }}</h4>--}}
+            <h5> سعر القطعة الواحدة: {{ $product->price }}</h5>
         </div>
     </div>
 
@@ -51,9 +49,14 @@
     <!--Product  -->
     <div class="product">
         <div class="container">
-            <h3 class="text-center my-4"><span>{{$product->price}}</span>الباقي في المخزون من احدث المنتجات</h3>
+            <h3 class="text-center bg-dark text-white my-4 py-3">
+                الباقي في المخزون <span class="text-warning">{{$product->price}}</span>
+                من احدث المنتجات
+
+            </h3>
         </div>
     </div>
+
     <!--Product  -->
 
     <div class="swiper-container testimonial-swiper">
@@ -121,8 +124,8 @@
             </div>
         @endif
 
-        <form id="contact" class="order-form bg-white shadow-sm p-5 my-5 rounded-md rtl" action="{{ route('send-form') }}"
-              method="post">
+        <form id="contact" class="order-form bg-white shadow-sm p-5 my-5 rounded-md rtl"
+              action="{{ route('send-form') }}" method="post">
             <h4 class="text-center mb-5">الدفع عند التسليم</h4>
             @csrf
             @method('POST')
@@ -140,95 +143,49 @@
             </div>
             <div class="mb-3 form-group">
                 <label for="number" class="form-label">رقم الجوال *</label>
-                <input type="number" name="number" value="{{old('name')}}" required class="form-control" id="number"
+                <input type="number" name="number" value="{{ old('name') }}" required class="form-control" id="number"
                        placeholder="رقم الجوال"/>
             </div>
             <div class="mb-3 form-group">
-                <label for="address" class="form-label">العنوان  *</label>
+                <label for="address" class="form-label">العنوان *</label>
                 <textarea class="form-control" name="address" id="address"></textarea>
             </div>
             <div class="mb-3 form-group">
                 <label class="form-label">اختر العرض:</label>
-                <div
-                    class="form-check p-3 d-flex align-items-center justify-content-between mb-2 border bg-light rounded">
-                    <label class="form-check-label mr-auto" for="offer1">اشترى 1 بسعر 199 ريال +25 رسوم توصيل</label>
-                    <input class="form-check-input ml-2" type="radio" id="offer1" name="offer"
-                           value="اشترى 1 بسعر 199 ريال +25 رسوم توصيل"/>
-                </div>
-                <div
-                    class="form-check d-flex align-items-center justify-content-between p-3 mb-2 border bg-light rounded">
-                    <label class="form-check-label mr-auto" for="offer2">اشترى 2 بسعر 329 ريال (توصيل مجاني)</label>
-                    <input class="form-check-input ml-2" type="radio" id="offer2" name="offer"
-                           value="اشترى 2 بسعر 329 ريال (توصيل مجاني)"/>
-                </div>
-                <div
-                    class="form-check d-flex align-items-center justify-content-between p-3 mb-2 border bg-light rounded">
-                    <label class="form-check-label mr-auto" for="offer3">اشترى 3 بسعر 399 ريال (توصيل مجاني)</label>
-                    <input class="form-check-input ml-2" type="radio" id="offer3" name="offer"
-                           value="اشترى 3 بسعر 399 ريال (توصيل مجاني)"/>
-                </div>
+                @if($product->additional_data)
+                    @php
+                        $additionalData = json_decode($product->additional_data, true);
+                    @endphp
+                    @if($additionalData)
+                        @foreach($additionalData as $key => $data)
+                            <div
+                                class="form-check p-3 d-flex align-items-center justify-content-between mb-2 border bg-light rounded">
+                                <label class="form-check-label mr-auto" for="offer{{ $key }}">{{ $data }}</label>
+                                <input class="form-check-input ml-2" type="radio" id="offer{{ $key }}" name="offer"
+                                       value="{{ $data }}"/>
+                            </div>
+                        @endforeach
+                    @else
+                        <div
+                            class="form-check p-3 d-flex align-items-center justify-content-between mb-2 border bg-light rounded">
+                            <label class="form-check-label mr-auto" for="offer_default">اشترى 1
+                                بسعر {{ $product->price }} ريال</label>
+                            <input class="form-check-input ml-2" type="radio" id="offer_default" name="offer"
+                                   value="اشترى 1 بسعر {{ $product->price }} ريال"/>
+                        </div>
+                    @endif
+                @else
+                    <div
+                        class="form-check p-3 d-flex align-items-center justify-content-between mb-2 border bg-light rounded">
+                        <label class="form-check-label mr-auto" for="offer_default">اشترى 1 بسعر {{ $product->price }}
+                            ريال</label>
+                        <input class="form-check-input ml-2" type="radio" id="offer_default" name="offer"
+                               value="اشترى 1 بسعر {{ $product->price }} ريال"/>
+                    </div>
+                @endif
             </div>
             <button type="submit" class="submit-btn btn btn-primary w-100">تأكيد الطلب</button>
         </form>
-
-        {{--        <form id="contact" class="order-form bg-white shadow-sm p-5 rounded-md" action="{{ route('send-form') }}"--}}
-        {{--              method="post">--}}
-        {{--            @csrf--}}
-        {{--            @method('POST')--}}
-        {{--            <div class="mb-3 form-group">--}}
-        {{--                <label for="name" class="form-label">الاسم كاملا *</label>--}}
-        {{--                <input type="text" id="name" name="name" required class="form-control" dir="rtl"--}}
-        {{--                       placeholder="الاسم كاملا"/>--}}
-        {{--            </div>--}}
-        {{--            <div class="mb-3 form-group">--}}
-        {{--                <label for="number" class="form-label">الجوال *</label>--}}
-        {{--                <div class="input-group">--}}
-        {{--                    <select class="form-select" name="country_code" id="country_code" dir="rtl">--}}
-        {{--                        <option value="+966">السعودية (+966)</option>--}}
-        {{--                        <option value="+971">الإمارات (+971)</option>--}}
-        {{--                        <option value="+973">البحرين (+973)</option>--}}
-        {{--                        <option value="+965">الكويت (+965)</option>--}}
-        {{--                        <option value="+968">عمان (+968)</option>--}}
-        {{--                        <option value="+974">قطر (+974)</option>--}}
-        {{--                    </select>--}}
-        {{--                </div>--}}
-        {{--            </div>--}}
-        {{--            <div class="mb-3 form-group">--}}
-        {{--                <label for="number" class="form-label">رقم الجوال *</label>--}}
-        {{--                <input type="number" name="number" value="{{old('name')}}" required class="form-control" id="number"--}}
-        {{--                       placeholder="رقم الجوال"--}}
-        {{--                       dir="rtl"/>--}}
-        {{--            </div>--}}
-        {{--            <div class="mb-3 form-group">--}}
-        {{--                <label for="address" class="form-label">العنوان وطلبك *</label>--}}
-        {{--                <textarea class="form-control" name="address" id="address" dir="rtl"></textarea>--}}
-        {{--            </div>--}}
-        {{--            <div class="mb-3 form-group">--}}
-        {{--                <label class="form-label">اختر العرض:</label>--}}
-        {{--                <div--}}
-        {{--                    class="form-check p-3 d-flex align-items-center justify-content-between mb-2 border bg-light rounded">--}}
-        {{--                    <label class="form-check-label mr-auto" for="offer1">اشترى 1 بسعر 199 ريال +25 رسوم توصيل</label>--}}
-        {{--                    <input class="form-check-input ml-2" type="radio" id="offer1" name="offer"--}}
-        {{--                           value="اشترى 1 بسعر 199 ريال +25 رسوم توصيل"/>--}}
-        {{--                </div>--}}
-
-        {{--                <div--}}
-        {{--                    class="form-check d-flex align-items-center justify-content-between p-3 mb-2 border bg-light rounded">--}}
-        {{--                    <label class="form-check-label mr-auto" for="offer2">اشترى 2 بسعر 329 ريال (توصيل مجاني)</label>--}}
-        {{--                    <input class="form-check-input ml-2" type="radio" id="offer2" name="offer"--}}
-        {{--                           value="اشترى 2 بسعر 329 ريال (توصيل مجاني)"/>--}}
-        {{--                </div>--}}
-
-        {{--                <div--}}
-        {{--                    class="form-check d-flex align-items-center justify-content-between p-3 mb-2 border bg-light rounded">--}}
-        {{--                    <label class="form-check-label mr-auto" for="offer3">اشترى 3 بسعر 399 ريال (توصيل مجاني)</label>--}}
-        {{--                    <input class="form-check-input ml-2" type="radio" id="offer3" name="offer"--}}
-        {{--                           value="اشترى 3 بسعر 399 ريال (توصيل مجاني)"/>--}}
-        {{--                </div>--}}
-
-        {{--            </div>--}}
-        {{--            <button type="submit" class="submit-btn btn btn-primary w-100">تأكيد الطلب</button>--}}
-        {{--        </form>--}}
     </div>
     <!-- Payment Form -->
     <!--company  -->

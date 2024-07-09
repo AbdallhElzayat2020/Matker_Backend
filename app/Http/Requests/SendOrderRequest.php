@@ -23,10 +23,10 @@ class SendOrderRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'country_code' => ['required', 'in:+966,+971,+973,+965,+968,+974,+20'],
+            'country_code' => ['required', 'in:+966'],
             'number' => ['required', 'string', 'max:20'],
             'address' => ['required', 'string'],
-            'offer' => ['required', 'in:اشترى 1 بسعر 199 ريال +25 رسوم توصيل,اشترى 2 بسعر 329 ريال (توصيل مجاني),اشترى 3 بسعر 399 ريال (توصيل مجاني)'],
+            'offer' => ['required'],
         ];
     }
 }

@@ -28,6 +28,7 @@
                                 <th>فئة المنتج</th>
                                 <th>وصف المنتج</th>
                                 <th>السعر</th>
+                                <th>البيانات الإضافية للسعر</th>
                                 <th>المتبقي بالمخزون</th>
                                 <th>Action</th>
                             </tr>
@@ -53,6 +54,24 @@
                                     <td>{{ $product->category->name }}</td>
                                     <td>{{ $product->description }}</td>
                                     <td>{{ $product->price }}</td>
+                                    <td>
+                                        @if($product->additional_data)
+                                            @php
+                                                $additionalData = json_decode($product->additional_data, true);
+                                            @endphp
+                                            @if($additionalData)
+                                                <ul>
+                                                    @foreach($additionalData as $data)
+                                                        <li>{{ $data }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            @else
+                                                <p>No additional data</p>
+                                            @endif
+                                        @else
+                                            <p>No additional data</p>
+                                        @endif
+                                    </td>
                                     <td>{{ $product->product }}</td>
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Action buttons">

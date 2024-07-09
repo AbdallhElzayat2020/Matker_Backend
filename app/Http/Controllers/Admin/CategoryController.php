@@ -81,23 +81,51 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        try {
-            $category = Category::findorFail($id);
-            $products = Product::where('category_id', "LIKE", $id)->get();
-             if ($products->count() > 0) {
-                 foreach ($products as $product) {
-                     $path = $product->image;
-                     $this->deleteFile($path);
-                 }
-             } else {
-                 return response(['status' => 'error', 'message' => 'Products NOT FOUND'], 404);
-             }
-             
-             $category->delete();
+//        try {
+//            $category = Category::findorFail($id);
+//            $products = Product::where('category_id', "LIKE", $id)->get();
+//             if ($products->count() > 0) {
+//                 foreach ($products as $product) {
+//                     $path = $product->image;
+//                     $this->deleteFile($path);
+//                 }
+//             } else {
+//                 return response(['status' => 'error', 'message' => 'Products NOT FOUND'], 404);
+//             }
+//
+//             $category->delete();
+//
+//             return response(['status' => 'success', 'message' => 'Deleted successfully']);
+//        } catch (\Throwable $th) {
+//            return response(['status' => 'error', 'message' => 'Something went wrong']);
+//        }
 
-             return response(['status' => 'success', 'message' => 'Deleted successfully']);
+
+        try {
+            $category = Category::findOrFail($id);
+
+            // الحصول على جميع المنتجات المرتبطة بالفئة
+            $products = Product::where('category_id', $id)->get();
+
+            if ($products->count() > 0) {
+                // حذف المنتجات مع ملفاتها إذا كانت موجودة
+                foreach ($products as $product) {
+                    $path = $product->image;
+                    $this->deleteFile($path);
+                    $product->delete();
+                }
+                // حذف الفئة بعد حذف المنتجات
+                $category->delete();
+                return response(['status' => 'success', 'message' => 'Deleted successfully']);
+            } else {
+                // حذف الفئة حتى إذا لم يكن بها منتجات
+                $category->delete();
+                return response(['status' => 'success', 'message' => 'Category deleted with no products']);
+            }
         } catch (\Throwable $th) {
             return response(['status' => 'error', 'message' => 'Something went wrong']);
         }
+
+
     }
 }

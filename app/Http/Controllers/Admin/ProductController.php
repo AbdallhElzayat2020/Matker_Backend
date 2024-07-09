@@ -4,13 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Product;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use App\traits\FileUploadTrait;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\File;
 use App\Http\Requests\Admin\AdminEditProductRequest;
 use App\Http\Requests\Admin\AdminCreateProductRequest;
-use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -41,22 +38,12 @@ class ProductController extends Controller
     public function store(AdminCreateProductRequest $request)
     {
         //         dd($request->all());
-//        $imgPath = $this->handleFileUpload($request, 'image');
-//        $product = new Product();
-//        $product->title = $request->title;
-//        $product->description = $request->description;
-//        $product->price = $request->price;
-//        $product->product = $request->product;
-//        $product->category_id = $request->category_id;
-//        $product->image = $imgPath;
-//        $product->save();
-//        toast(__('Product has been created successfully'), 'success');
-//
-//        return redirect()->route('admin.product.index');
-
-
         // Handle multiple file upload
         $imgPaths = $this->handleMultipleFileUpload($request, 'image');
+
+        // معالجة البيانات الإضافية
+        $additionalData = $request->additional_data ?? [];
+        $additionalDataJson = json_encode($additionalData);
 
         $product = new Product();
         $product->title = $request->title;
@@ -65,6 +52,7 @@ class ProductController extends Controller
         $product->product = $request->product;
         $product->category_id = $request->category_id;
         $product->image = json_encode($imgPaths); // Store paths as JSON
+        $product->additional_data = $additionalDataJson; // تخزين البيانات الإضافية كـ JSON
 
         $product->save();
 
@@ -89,12 +77,12 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(AdminEditProductRequest $request, $id)
     {
         $product = Product::findOrFail($id);
         $oldImgPaths = json_decode($product->image, true) ?? [];
 
-        // Handle new image uploads and delete old images if new ones are provided
+// Handle new image uploads and delete old images if new ones are provided
         if ($request->hasFile('image')) {
             $imgPaths = $this->handleMultipleFileUpload($request, 'image', $oldImgPaths);
         } else {
@@ -108,6 +96,10 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->image = json_encode($imgPaths); // Store paths as JSON
 
+        $additionalData = $request->additional_data ?? [];
+        $additionalDataJson = json_encode($additionalData);
+        $product->additional_data = $additionalDataJson; // تخزين البيانات الإضافية كـ JSON
+
         $product->save();
 
         toast(__('Product has been updated successfully'), 'success');
@@ -115,7 +107,6 @@ class ProductController extends Controller
         return redirect()->route('admin.product.index');
     }
 
-// مثال على دالة لمعالجة تحميل الصور
 
 
 //    public function destroy(string $id)

@@ -92,7 +92,7 @@
 {{--        });--}}
 {{--    </script>--}}
 {{--@endsection--}}
-6
+
 
 @extends('admin.layouts.master')
 @section('title', 'Update Product Page')
@@ -144,6 +144,25 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label for="additional_data">Additional Data</label>
+                        @php
+                            $additionalData = json_decode($product->additional_data, true) ?? [];
+                        @endphp
+                        <div id="additional-data-container">
+                            @foreach($additionalData as $key => $value)
+                                <div class="form-group">
+                                    <label for="additional_data[{{ $key }}]">Data {{ $key + 1 }}</label>
+                                    <input name="additional_data[{{ $key }}]" value="{{ $value }}"
+                                           id="additional_data[{{ $key }}]" type="text" class="form-control">
+                                </div>
+                            @endforeach
+                        </div>
+                        <button type="button" id="add-data-btn" class="btn btn-secondary mt-2">Add More Data</button>
+                        @error('additional_data')
+                        <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="image">Images</label>
                         <div id="image-preview" class="image-preview">
                             @php
@@ -168,9 +187,7 @@
                         <select class="form-control" name="category_id" id="category_id">
                             @foreach ($categories as $category)
                                 <option
-                                    value="{{ $category->id }}" {{ $category->id == $product->category_id ? 'selected' : '' }}>
-                                    {{ $category->name }}
-                                </option>
+                                    value="{{ $category->id }}" {{ $category->id == $product->category_id ? 'selected' : '' }}>{{ $category->name }}</option>
                             @endforeach
                         </select>
                         @error('category_id')
@@ -187,6 +204,20 @@
 @section('js')
     <script>
         $(document).ready(function () {
+            let additionalDataContainer = $('#additional-data-container');
+            let addDataBtn = $('#add-data-btn');
+            let additionalDataCount = {{ count($additionalData) }};
+
+            addDataBtn.click(function () {
+                additionalDataCount++;
+                additionalDataContainer.append(`
+                    <div class="form-group">
+                        <label for="additional_data[${additionalDataCount}]">Data ${additionalDataCount + 1}</label>
+                        <input name="additional_data[${additionalDataCount}]" id="additional_data[${additionalDataCount}]" type="text" class="form-control">
+                    </div>
+                `);
+            });
+
             $('#image-upload').change(function () {
                 var input = $(this)[0];
                 if (input.files) {

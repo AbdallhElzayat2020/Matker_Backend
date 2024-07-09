@@ -40,7 +40,6 @@
     <div class="container px-3">
         <i class="fas fa-bars menu-icon" onclick="toggleMenu()"></i>
         <a href="{{ url('/') }}" class="logo text-decoration-none text-black">
-            {{--            <img src="{{ asset('frontend/assets/images/logo.png') }}" alt="Logo"/>--}}
             <span>MATAJER</span>
         </a>
         <div class="search-box">
@@ -60,7 +59,6 @@
                 @endforeach
             </div>
         </div>
-        <a href="#">حول</a>
         <a href="#contact">اتصل بنا</a>
     </div>
 </div>

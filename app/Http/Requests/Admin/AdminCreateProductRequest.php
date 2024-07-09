@@ -23,9 +23,9 @@ class AdminCreateProductRequest extends FormRequest
     {
         return [
             'title' => ['required', 'max:255'],
-            'description' => ['required', 'max:255'],
+            'description' => ['required', ],
             'product' => ['required', 'max:255'],
-            'price' => ['required', 'max:255'],
+            'price' => ['required',],
             'category_id' => ['required'],
             'image.*' => ['required', 'max:4000', 'image', 'mimes:jpeg,png,jpg'],
         ];
