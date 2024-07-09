@@ -1,16 +1,16 @@
 @extends('admin.layouts.master');
 @section('title')
-    Create Category Page
+    Create Product Page
 @endsection
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Create Category Page</h1>
+            <h1>Create Product Page</h1>
         </div>
 
         <div class="card card-primary">
             <div class="card-header">
-                <h4>Create Category</h4>
+                <h4>Create Product</h4>
             </div>
             <div class="card-body">
                 <form enctype="multipart/form-data" action="{{ route('admin.product.store') }}" method="post">
@@ -53,7 +53,7 @@
                         <label for="content">صورة المنتج</label>
                         <div id="image-preview" class="image-preview">
                             <label for="image-upload" id="image-label">Choose File</label>
-                            <input type="file" required name="image" id="image-upload">
+                            <input type="file" required name="image[]" multiple  id="image-upload">
                         </div>
                         @error('image')
                         <p class="text-danger">{{ $message }}</p>

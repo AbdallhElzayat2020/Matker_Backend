@@ -22,9 +22,7 @@
                         <table class="table table-striped" id="table-2">
                             <thead>
                             <tr>
-                                <th class="text-center">
-                                    #
-                                </th>
+                                <th class="text-center">#</th>
                                 <th>اسم المنتج</th>
                                 <th>صورة المنتج</th>
                                 <th>فئة المنتج</th>
@@ -39,9 +37,18 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $product->title }}</td>
-
-                                    <td><img src="{{ asset($product->image) }}" alt="{{ $product->title }}"
-                                             width="70" height="50">
+                                    <td class="d-flex align-items-center justify-content-between">
+                                        @php
+                                            $imgPaths = json_decode($product->image, true);
+                                        @endphp
+                                        @if($imgPaths)
+                                            @foreach($imgPaths as $imgPath)
+                                                <img src="{{ asset($imgPath) }}" alt="{{ $product->title }}" width="70"
+                                                     height="50" style="margin: 5px;">
+                                            @endforeach
+                                        @else
+                                            <p>No image Found</p>
+                                        @endif
                                     </td>
                                     <td>{{ $product->category->name }}</td>
                                     <td>{{ $product->description }}</td>
@@ -65,7 +72,6 @@
                         </table>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>

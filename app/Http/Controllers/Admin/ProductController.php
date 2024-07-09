@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\Admin\AdminEditProductRequest;
 use App\Http\Requests\Admin\AdminCreateProductRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -40,18 +41,37 @@ class ProductController extends Controller
     public function store(AdminCreateProductRequest $request)
     {
         //         dd($request->all());
-        $imgPath = $this->handleFileUpload($request, 'image');
+//        $imgPath = $this->handleFileUpload($request, 'image');
+//        $product = new Product();
+//        $product->title = $request->title;
+//        $product->description = $request->description;
+//        $product->price = $request->price;
+//        $product->product = $request->product;
+//        $product->category_id = $request->category_id;
+//        $product->image = $imgPath;
+//        $product->save();
+//        toast(__('Product has been created successfully'), 'success');
+//
+//        return redirect()->route('admin.product.index');
+
+
+        // Handle multiple file upload
+        $imgPaths = $this->handleMultipleFileUpload($request, 'image');
+
         $product = new Product();
         $product->title = $request->title;
         $product->description = $request->description;
         $product->price = $request->price;
         $product->product = $request->product;
         $product->category_id = $request->category_id;
-        $product->image = $imgPath;
+        $product->image = json_encode($imgPaths); // Store paths as JSON
+
         $product->save();
+
         toast(__('Product has been created successfully'), 'success');
 
         return redirect()->route('admin.product.index');
+
     }
 
     /**
@@ -71,32 +91,61 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-//        dd($request->all());
         $product = Product::findOrFail($id);
+        $oldImgPaths = json_decode($product->image, true) ?? [];
 
-        // تحديث البيانات الأساسية للمنتج
+        // Handle new image uploads and delete old images if new ones are provided
+        if ($request->hasFile('image')) {
+            $imgPaths = $this->handleMultipleFileUpload($request, 'image', $oldImgPaths);
+        } else {
+            $imgPaths = $oldImgPaths;
+        }
+
         $product->title = $request->title;
         $product->description = $request->description;
         $product->price = $request->price;
+        $product->product = $request->product;
         $product->category_id = $request->category_id;
+        $product->image = json_encode($imgPaths); // Store paths as JSON
 
-        // حفظ الصورة الجديدة أو استخدام الصورة القديمة إذا لم يتم تحميل صورة جديدة
-        $product->image = $this->handleFileUpload($request, 'image', $product->image);
-
-        // حفظ التغييرات
         $product->save();
 
+        toast(__('Product has been updated successfully'), 'success');
 
-        return redirect()->route('admin.product.index')->with('success', 'تم تحديث المنتج بنجاح.');
+        return redirect()->route('admin.product.index');
     }
+
+// مثال على دالة لمعالجة تحميل الصور
+
+
+//    public function destroy(string $id)
+//    {
+//        $product = Product::findOrFail($id);
+//        $path = $product->image;
+//        $this->deleteFile($path);
+//
+//        $product->delete();
+//        return response(['status' => 'success', 'message' => 'Deleted successfully']);
+//    }
+
 
     public function destroy(string $id)
     {
         $product = Product::findOrFail($id);
-        $path = $product->image;
-        $this->deleteFile($path);
 
+        // فك تشفير مسارات الصور المخزنة كـ JSON
+        $imgPaths = json_decode($product->image, true);
+
+        // حذف كل صورة
+        if ($imgPaths) {
+            foreach ($imgPaths as $path) {
+                $this->deleteFile($path);
+            }
+        }
+
+        // حذف المنتج من قاعدة البيانات
         $product->delete();
+
         return response(['status' => 'success', 'message' => 'Deleted successfully']);
     }
 }

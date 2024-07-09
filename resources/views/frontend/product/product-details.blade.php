@@ -1,16 +1,32 @@
 @extends('frontend.layouts.master')
 @section('content')
     <!-- Swiper -->
-    <div class="swiper-container">
-        <h1>مجموعة تبييض الأسنان</h1>
-        <div class="swiper-wrapper">
-            @foreach ($products as $product)
-                <div class="swiper-slide">
-                    <div class="slide-content">
-                        <img src="{{ asset($product->image) }}" alt="{{ $product->title }}"/>
-                    </div>
-                </div>
-            @endforeach
+    <div class="container">
+        <h1 class="text-center my-4">{{ $product->title }}</h1>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                @php
+                    $imgPaths = json_decode($product->image, true);
+                @endphp
+                @if($imgPaths)
+                    @foreach ($imgPaths as $image)
+                        <div class="swiper-slide">
+                            <div class="slide-content">
+                                <img src="{{ asset($image) }}" alt="{{ $product->title }}"
+                                     style="max-width: 100%; width: 100%; height: 250px;"/>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <p>No images found for this product.</p>
+                @endif
+            </div>
+        </div>
+        <div class="product-description text-right">
+            <p>مواصفات المنتج :{{ $product->description }}</p>
+            <h5>السعر : {{ $product->price }}</h5>
+            {{--            <p>مواصفات المنتج :{{ $product->description }}</p>--}}
+            {{--            <h4>ال: {{ $product->price }}</h4>--}}
         </div>
     </div>
 
@@ -39,34 +55,6 @@
         </div>
     </div>
     <!--Product  -->
-    <!-- Testimonial -->
-    {{--    <div id="testimonialCarousel" class="carousel slide my-5" data-bs-ride="carousel" data-bs-interval="3000">--}}
-    {{--        <h4 class="text-center my-4">اراء العملاء في خدماتنا </h4>--}}
-    {{--        <div class="carousel-inner">--}}
-    {{--            @foreach($clients as $key => $client)--}}
-    {{--                <div class="carousel-item @if($key == 0) active @endif">--}}
-    {{--                    <div class="d-flex align-items-center justify-content-center h-100">--}}
-    {{--                        <div class="testimonial-content text-center">--}}
-    {{--                            <p class="mx-auto" style="max-width: 100%;">--}}
-    {{--                                {{$client->description}}--}}
-    {{--                            </p>--}}
-    {{--                            <div class="testimonial-author">--}}
-    {{--                                <span>{{$client->name}}</span>--}}
-    {{--                            </div>--}}
-    {{--                        </div>--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--            @endforeach--}}
-    {{--        </div>--}}
-    {{--        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">--}}
-    {{--            <span class="carousel-control-prev-icon bg-danger" aria-hidden="true"></span>--}}
-    {{--            <span class="visually-hidden">Previous</span>--}}
-    {{--        </button>--}}
-    {{--        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">--}}
-    {{--            <span class="carousel-control-next-icon bg-danger" aria-hidden="true"></span>--}}
-    {{--            <span class="visually-hidden">Next</span>--}}
-    {{--        </button>--}}
-    {{--    </div>--}}
 
     <div class="swiper-container testimonial-swiper">
         <div class="swiper-wrapper">
@@ -133,8 +121,9 @@
             </div>
         @endif
 
-        <form id="contact" class="order-form bg-white shadow-sm p-5 rounded-md rtl" action="{{ route('send-form') }}"
+        <form id="contact" class="order-form bg-white shadow-sm p-5 my-5 rounded-md rtl" action="{{ route('send-form') }}"
               method="post">
+            <h4 class="text-center mb-5">الدفع عند التسليم</h4>
             @csrf
             @method('POST')
             <div class="mb-3 form-group">
@@ -146,11 +135,6 @@
                 <div class="input-group">
                     <select class="form-select" name="country_code" id="country_code">
                         <option value="+966">السعودية (+966)</option>
-                        <option value="+971">الإمارات (+971)</option>
-                        <option value="+973">البحرين (+973)</option>
-                        <option value="+965">الكويت (+965)</option>
-                        <option value="+968">عمان (+968)</option>
-                        <option value="+974">قطر (+974)</option>
                     </select>
                 </div>
             </div>
@@ -160,7 +144,7 @@
                        placeholder="رقم الجوال"/>
             </div>
             <div class="mb-3 form-group">
-                <label for="address" class="form-label">العنوان وطلبك *</label>
+                <label for="address" class="form-label">العنوان  *</label>
                 <textarea class="form-control" name="address" id="address"></textarea>
             </div>
             <div class="mb-3 form-group">

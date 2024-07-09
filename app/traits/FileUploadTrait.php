@@ -9,33 +9,41 @@ use Illuminate\Support\Facades\File;
 trait FileUploadTrait
 {
 
-//    public function handleFileUpload(Request $request, string $fileName, ?string $oldPath = null, string $dir = 'uploads'): ?string
-//    {
-//
-//        //check if file exists
-//        if ($oldPath && File::exists(public_path($oldPath))) {
-//            File::delete(public_path($oldPath));
-//        }
-//
-//        //check if request have img
-//        if (!$request->hasFile($fileName)) {
-//            return null;
-//        }
-//
-//
-//
-//        $file = $request->file($fileName);
-//
-//        $extension = $file->getClientOriginalExtension();
-//
-//        $updatedFileName = Str::random(20) . '.' . $extension;
-//
-//        $file->move(public_path($dir), $updatedFileName);
-//
-//        $filePath = $dir . '/' . $updatedFileName;
-//
-//        return $filePath;
-//    }
+
+    public function handleMultipleFileUpload(Request $request, string $fileName, array $oldPaths = [], string $dir = 'uploads'): array
+    {
+        $filePaths = [];
+
+        // Check if request has files
+        if (!$request->hasFile($fileName)) {
+            return $oldPaths; // Return old paths if no new files uploaded
+        }
+
+        // Delete old files if exists
+        foreach ($oldPaths as $oldPath) {
+            if ($oldPath && File::exists(public_path($oldPath))) {
+                File::delete(public_path($oldPath));
+            }
+        }
+
+        // Get the files from the request
+        $files = $request->file($fileName);
+
+        foreach ($files as $file) {
+            // Generate a unique file name
+            $extension = $file->getClientOriginalExtension();
+            $updatedFileName = Str::random(20) . '.' . $extension;
+
+            // Move the file to the specified directory
+            $file->move(public_path($dir), $updatedFileName);
+
+            // Build the file path
+            $filePaths[] = $dir . '/' . $updatedFileName;
+        }
+
+        return $filePaths;
+    }
+
     public function handleFileUpload(Request $request, string $fileName, ?string $oldPath = null, string $dir = 'uploads'): ?string
     {
         // Check if request has the file
@@ -65,6 +73,13 @@ trait FileUploadTrait
     }
 
     //Handle File Delete
+//    public function deleteFile(string $path): void
+//    {
+//        if ($path && File::exists(public_path($path))) {
+//            File::delete(public_path($path));
+//        }
+//    }
+
     public function deleteFile(string $path): void
     {
         if ($path && File::exists(public_path($path))) {

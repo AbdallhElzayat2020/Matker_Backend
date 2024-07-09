@@ -22,6 +22,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['admin']],
 
     // Route Products
     Route::resource('product', \App\Http\Controllers\Admin\ProductController::class);
+    Route::get('product/{id}', [\App\Http\Controllers\Admin\ProductController::class, 'show'])->name('product.show');
+
     // Route Orders
     Route::resource('order', \App\Http\Controllers\Admin\AdminOrderController::class);
     // Route Boxes
