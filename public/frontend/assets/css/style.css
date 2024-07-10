@@ -232,6 +232,7 @@ body {
 
 .slide-content img {
     border-radius: 10px;
+    object-fit: contain;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -300,17 +301,18 @@ body {
 .timer {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .time-unit {
     background-color: #b00;
     color: white;
-    padding: 20px;
+    padding: 10px;
     border-radius: 5px;
     text-align: center;
-    width: 80px;
-    height: 120px;
+    width: 60px;
+    height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -318,7 +320,7 @@ body {
 }
 
 .time-unit span {
-    font-size: 36px;
+    font-size: 24px;
     font-weight: bold;
 }
 
@@ -329,12 +331,21 @@ body {
 
 @media (max-width: 768px) {
     .timer {
-        flex-wrap: wrap;
+        gap: 5px;
     }
 
     .time-unit {
-        width: 100%;
-        margin-bottom: 10px;
+        width: 45px;
+        height: 70px;
+        padding: 5px;
+    }
+
+    .time-unit span {
+        font-size: 18px;
+    }
+
+    .time-unit div {
+        font-size: 15px;
     }
 }
 

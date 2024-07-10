@@ -124,7 +124,7 @@
             </div>
         @endif
 
-        <form id="contact" class="order-form bg-white shadow-sm p-5 my-5 rounded-md rtl"
+        <form id="contact" class="order-form bg-white shadow-sm p-2 my-5 rounded-md rtl"
               action="{{ route('send-form') }}" method="post">
             <h4 class="text-center mb-5">الدفع عند التسليم</h4>
             @csrf
