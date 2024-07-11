@@ -1,6 +1,6 @@
 @extends('admin.layouts.master');
 @section('title')
-    Create Boxs Page
+    Edit Boxs Page
 @endsection
 @section('content')
     <section class="section">

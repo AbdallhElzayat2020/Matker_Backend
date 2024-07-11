@@ -48,7 +48,7 @@
                                                      height="50" style="margin: 5px;">
                                             @endforeach
                                         @else
-                                            <p>No image Found</p>
+                                            <p>لا يوجد صورة للمنتج</p>
                                         @endif
                                     </td>
                                     <td>{{ $product->category->name }}</td>

@@ -1,6 +1,6 @@
 @extends('admin.layouts.master');
 @section('title')
-    Update Category Page
+    Edit Category Page
 @endsection
 @section('content')
     <section class="section">

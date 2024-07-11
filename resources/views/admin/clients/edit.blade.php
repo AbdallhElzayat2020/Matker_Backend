@@ -1,6 +1,6 @@
 @extends('admin.layouts.master');
 @section('title')
-    Create testimonials Page
+    Edit testimonials Page
 @endsection
 @section('content')
     <section class="section">

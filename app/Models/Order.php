@@ -9,14 +9,11 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'phone',
-        'address',
-        'offer',
-        'status',
-        'country_code'
-    ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 
     public function getStatusAttribute($value)
     {

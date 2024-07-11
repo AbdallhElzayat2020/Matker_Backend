@@ -21,10 +21,9 @@ class OrderController extends Controller
         $formData->address = $request->address;
         $formData->status = 0;
         $formData->offer = $request->offer;
+        $formData->product_id = $request->product_id;
         $formData->save();
         return redirect()->back()->with('success', 'تم تقديم النموذج بنجاح!');
-
-
     }
 
 }

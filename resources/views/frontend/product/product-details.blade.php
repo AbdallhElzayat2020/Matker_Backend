@@ -129,6 +129,8 @@
             <h4 class="text-center mb-5">الدفع عند التسليم</h4>
             @csrf
             @method('POST')
+            <input type="hidden" name="product_id" value="{{ $product->id }}">
+
             <div class="mb-3 form-group">
                 <label for="name" class="form-label">الاسم كاملا *</label>
                 <input type="text" id="name" name="name" required class="form-control" placeholder="الاسم كاملا"/>

@@ -13,7 +13,7 @@ class AdminOrderController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Order::query();
+        $query = Order::query()->with('product');
 
         if ($request->has('status')) {
             $status = $request->status;
