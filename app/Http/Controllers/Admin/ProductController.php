@@ -77,16 +77,54 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
+//    public function update(AdminEditProductRequest $request, $id)
+//    {
+//        $product = Product::findOrFail($id);
+//        $oldImgPaths = json_decode($product->image, true) ?? [];
+//
+//// Handle new image uploads and delete old images if new ones are provided
+//        if ($request->hasFile('image')) {
+//            $imgPaths = $this->handleMultipleFileUpload($request, 'image', $oldImgPaths);
+//        } else {
+//            $imgPaths = $oldImgPaths;
+//        }
+//
+//        $product->title = $request->title;
+//        $product->description = $request->description;
+//        $product->price = $request->price;
+//        $product->product = $request->product;
+//        $product->category_id = $request->category_id;
+//        $product->image = json_encode($imgPaths); // Store paths as JSON
+//
+//        $additionalData = $request->additional_data ?? [];
+//        $additionalDataJson = json_encode($additionalData);
+//        $product->additional_data = $additionalDataJson; // تخزين البيانات الإضافية كـ JSON
+//
+//        $product->save();
+//
+//        toast(__('Product has been updated successfully'), 'success');
+//
+//        return redirect()->route('admin.product.index');
+//    }
+
+
     public function update(AdminEditProductRequest $request, $id)
     {
         $product = Product::findOrFail($id);
         $oldImgPaths = json_decode($product->image, true) ?? [];
 
-// Handle new image uploads and delete old images if new ones are provided
+        // Handle deleted images
+        $deletedImages = json_decode($request->input('deleted_images', '[]'), true);
+        $remainingImgPaths = array_filter($oldImgPaths, function ($path, $index) use ($deletedImages) {
+            return !in_array($index, $deletedImages);
+        }, ARRAY_FILTER_USE_BOTH);
+
+        // Handle new image uploads
         if ($request->hasFile('image')) {
-            $imgPaths = $this->handleMultipleFileUpload($request, 'image', $oldImgPaths);
+            $newImgPaths = $this->handleMultipleFileUpload($request, 'image');
+            $imgPaths = array_merge($remainingImgPaths, $newImgPaths);
         } else {
-            $imgPaths = $oldImgPaths;
+            $imgPaths = $remainingImgPaths;
         }
 
         $product->title = $request->title;
@@ -98,7 +136,7 @@ class ProductController extends Controller
 
         $additionalData = $request->additional_data ?? [];
         $additionalDataJson = json_encode($additionalData);
-        $product->additional_data = $additionalDataJson; // تخزين البيانات الإضافية كـ JSON
+        $product->additional_data = $additionalDataJson; // Store additional data as JSON
 
         $product->save();
 
@@ -106,7 +144,6 @@ class ProductController extends Controller
 
         return redirect()->route('admin.product.index');
     }
-
 
 
 //    public function destroy(string $id)
